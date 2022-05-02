@@ -1,0 +1,290 @@
+:root {
+	font-size: 10px;
+	--colorBG: #0d0d0b;
+	--colorDivider: #3c3932;
+	--colorText: #cac9c5;
+	--colorAccentLight: #b2ab99;
+
+    --borderThicknessGeneric: 0.4rem;
+    --colorAccentDark: #afa780;
+    --colorRequirementUnmet: #e46363;
+    --colorSchoolBuff: #7bca71;
+
+
+	/* --cornerRoundStandard: 1.25rem;*/
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+    margin: 0rem;
+    padding: 0rem;
+    background-color: var(--colorBG);
+	color: var(--colorText);
+    background: linear-gradient(0deg, #373830 0%, #525044 15%, #2b2c26 70%, #0b0b09 100%);
+    background-attachment: fixed;
+
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+}
+
+@font-face {
+	font-family: Garamond;
+	src: url('../fonts/gara.ttf');
+}
+
+@font-face {
+	font-family: GaramondBold;
+	src: url('../fonts/garabd.ttf');
+}
+
+body {
+	margin: 4rem 0rem 0rem 0rem;
+	font-size: 1.8rem;
+    line-height: 1.9rem;
+	font-family: Garamond, Helvetica, Arial, sans-serif;
+
+	text-shadow:
+		0.2rem -0.2rem 0.25rem #00000066,
+		0.2rem -0.2rem 0.25rem #00000066,
+		-0.2rem 0.2rem 0.25rem #00000066,
+		0.2rem 0.2rem 0.25rem #00000066;
+}
+
+#contentBody {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 4rem 0rem 2rem 0rem;
+}
+
+#outputDiv {
+    margin: 1rem 4rem;
+}
+
+table {
+    background-color: #0d0d0b77;
+    border-collapse: separate;
+    border-spacing: 0.0rem 0.3rem;
+    width: 100%;
+    padding: 0rem 0.3rem;
+    margin: 0rem 0rem 1rem 0rem;
+}
+
+table tr {
+    background-color: #bebbb211;
+    line-height: 2.2rem;
+
+}
+
+table tr:hover {
+    background-color: #bebbb222;
+}
+
+table tr td {
+    padding: 0.25rem 0.6rem;
+}
+
+thead {
+    font-family: Garamond, Helvetica, Arial, sans-serif;
+    color: var(--colorAccentLight);
+    font-size: 1.8rem;
+    line-height: 2rem;
+    background-color: #bebbb222;
+}
+
+.colSpellBuff {
+    width: 10rem;
+}
+
+.colAdjustedBuff {
+    width: 10rem;
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 5.2rem;
+    font-weight: normal;
+    padding: 0.25rem 0rem 0.25rem 0rem;
+    text-align: center;
+    background-color: #34362a66;
+    border-top: 0.3rem solid #4c4940;
+    border-bottom: 0.3rem solid #4c4940;
+}
+
+h2 {
+    font-size: 2.5rem;
+    line-height: 2.6rem;
+    font-weight: normal;
+    padding: 0.25rem 0rem 0.25rem 0rem;
+    text-align: center;
+    background-color: #34362a66;
+    border-top: 0.3rem solid #4c4940;
+    border-bottom: 0.3rem solid #4c4940;
+    margin: 0rem 0rem 1rem 0rem;;
+}
+
+.controlsContainer {
+    margin: 0rem 2rem;
+    flex-basis: 40rem;
+}
+
+.mainDescription {
+    text-align: center;
+    max-width: 80rem;
+    margin: 1.5rem auto;
+}
+
+.schoolsContainerEntry span {
+    color: var(--colorAccentDark);
+    float: right;
+    display: none;
+}
+
+.requirementUnmet {
+    color: var(--colorRequirementUnmet);
+}
+
+.schoolBuff {
+    color: var(--colorSchoolBuff);
+}
+
+input, select, option {
+    border-style: none;
+    background-color: #0d0d0b77;
+    color: var(--colorText);
+    font-size: 1.8rem;
+    text-align: center;
+    width: 100%;
+}
+
+.colStatLevelInput {
+    width: 10rem;
+}
+
+.colSelectionInput {
+    width: 18rem;
+}
+
+#schoolsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;;
+}
+
+.schoolsContainerEntry {
+    width: calc(50% - 1rem);
+    background-color: #0d0d0b77;
+    margin: 0rem 0.15rem 0.2rem 0.15rem;
+    padding: 0.25rem 0.3rem;
+    cursor: pointer;
+}
+
+.schoolsContainerEntry span {
+    display: none;
+}
+
+.schoolsContainerEntrySelected span {
+    display: inline;
+}
+
+.linkIconSVG {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1rem;
+}
+
+.linkIconSVG path {
+    fill: var(--colorAccentDark);
+	stroke-width: 1rem;
+	stroke: var(--colorBG);
+	fill-rule: evenodd;
+	paint-order: stroke;
+}
+
+a:hover .linkIconSVG path {
+    fill: var(--colorAccentLight);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:active {
+    color: var(--colorAccentDark);
+    font-weight: bold;
+}
+
+a:visited {
+    color: var(--colorAccentDark);
+}
+
+a:hover {
+    color: var(--colorAccentLight);
+}
+
+a:active {
+    color: var(--colorAccentDark);
+}
+
+#footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+    padding-bottom: 2rem;
+    max-width: 80rem;
+}
+
+#footerLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+p {
+    margin: 0.5rem 0rem;
+}
+
+#statTableDef thead tr td {
+    text-align: center;
+}
+
+#statTableDef thead tr td:first-child {
+    text-align: left;
+}
+
+.displayColFP {
+    width: 5rem;
+}
+
+.displayColARDmg {
+    width: 11rem;
+}
+
+.displayColStat {
+    width: 3rem;
+}
+
+.displayColType {
+    width: 8rem;
+}
+
+.displayColHitType {
+    width: 8rem;
+}
+
+.displayColHitCount {
+    width: 6rem;
+}
+
+.displayColDmgType {
+    width: 10rem;
+}
