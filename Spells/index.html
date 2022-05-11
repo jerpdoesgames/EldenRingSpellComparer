@@ -5,13 +5,16 @@
 		<title>Elden Ring Spell Comparer - by Jerp</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles/base.css"/>
         <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+        <script src="script/eldenRingEnums.js"></script>
+        <script src="data/spellSchools.js"></script>
         <script src="data/scalingPaths.js"></script>
         <script src="data/statScalingMap.js"></script>
         <script src="data/staves.js"></script>
         <script src="data/seals.js"></script>
-        <script src="script/eldenRingScaling.js"></script>
-        <script src="script/eldenRingDamage.js"></script>
+        <script src="script/eldenRingScalingCalc.js"></script>
+        <script src="script/eldenRingDamageCalc.js"></script>
 		<script src="script/spells.js"></script>
 
 		<meta property="og:title" content="Elden Ring Spell Comparer - by Jerp"/>
@@ -27,7 +30,7 @@
 
 	<body onload="toolInstance.initialize();">
 
-        <h1>Elden Ring Casting Spell Comparator</h1>
+        <h1>Elden Ring Spell Comparator</h1>
 
         <p class="mainDescription">Compare AR and Damage for Sorceries and Incantations.</p>
 
@@ -54,6 +57,39 @@
                     <tr>
                         <td>Arcane</td>
                         <td class="colStatLevelInput"><input id="statControl4" type="number" value="10" min="1" max="99"></input></td>
+                    </tr>
+                </table>
+
+
+                <h2>Tools &amp; Upgrade Level</h2>
+                <table class="statsTable">
+                    <tr>
+                        <td>Regular</td>
+                        <td class="colStatLevelInput"><input id="upgradeControl0" type="number" value="25" min="0" max="25"></input></td>
+                    </tr>
+                    <tr>
+                        <td>Somber</td>
+                        <td class="colStatLevelInput"><input id="upgradeControl1" type="number" value="10" min="0" max="10"></input></td>
+                    </tr>
+                    <tr>
+                        <td>Staff</td>
+                        <td class="colSelectionInput">
+                            <select id="controlSpellType">
+                                <option value="0">Astrologer Staff</option>
+                                <option value="1">Carian Glintstone Staff</option>
+                                <option value="2">Carian Regal Scepter</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Seal</td>
+                        <td class="colSelectionInput">
+                            <select id="controlSpellType">
+                                <option value="0">Finger Seal</option>
+                                <option value="1">Frenzyflame Seal</option>
+                                <option value="2">Dragon Communion Seal</option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
 
@@ -98,37 +134,6 @@
                         <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
                     </tr>
                 </table>
-                <h2>Tools &amp; Upgrade Level</h2>
-                <table class="statsTable">
-                    <tr>
-                        <td>Regular</td>
-                        <td class="colStatLevelInput"><input id="upgradeControl0" type="number" value="25" min="0" max="25"></input></td>
-                    </tr>
-                    <tr>
-                        <td>Somber</td>
-                        <td class="colStatLevelInput"><input id="upgradeControl1" type="number" value="10" min="0" max="10"></input></td>
-                    </tr>
-                    <tr>
-                        <td>Staff</td>
-                        <td class="colSelectionInput">
-                            <select id="controlSpellType">
-                                <option value="0">Astrologer Staff</option>
-                                <option value="1">Carian Glintstone Staff</option>
-                                <option value="2">Carian Regal Scepter</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Seal</td>
-                        <td class="colSelectionInput">
-                            <select id="controlSpellType">
-                                <option value="0">Finger Seal</option>
-                                <option value="1">Frenzyflame Seal</option>
-                                <option value="2">Dragon Communion Seal</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
 
                 <h2>Sort/Filter</h2>
                 <table class="statsTable">
@@ -159,7 +164,7 @@
                         </td>
                     </tr>
                 </table>
-                <h2>Spell Schools</h2>
+                <h2>Extra Spell Schools</h2>
 
                 <div id="schoolsContainer">
                     <div id="schoolSelect0" class="schoolsContainerEntry">Stonedigger<span>&#10003;</span></div>

@@ -1,0 +1,18 @@
+const STAT_VALUE_MIN = 0;
+const STAT_VALUE_MAX = 99;
+
+const STAT_STRENGTH = 0;
+const STAT_DEXTERITY = 1;
+const STAT_INTELLIGENCE = 2;
+const STAT_FAITH = 3;
+const STAT_ARCANE = 4;
+
+const DAMAGE_PHYSICAL = 0;
+const DAMAGE_MAGIC = 1;
+const DAMAGE_FIRE = 2;
+const DAMAGE_LIGHTNING = 3;
+const DAMAGE_ARCANE = 4;
+
+const SPELL_TYPE_ALL = 0;
+const SPELL_TYPE_SORCERY = 1;
+const SPELL_TYPE_INCANTATION = 2;
