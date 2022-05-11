@@ -3,7 +3,7 @@
 
 :root {
 	font-size: 10px;
-	--colorBG: #0d0d0b;
+	--colorBG: #22221e;
 	--colorDivider: #3c3932;
 	--colorText: #cac9c5;
 	--colorAccentLight: #b2ab99;
@@ -14,17 +14,15 @@
     --colorSchoolBuff: #7bca71;
 }
 
+
 html, body {
-	height: 100%;
-	width: 100%;
-    margin: 0rem;
     padding: 0rem;
     background-color: var(--colorBG);
 	color: var(--colorText);
     background: linear-gradient(0deg, #373830 0%, #525044 15%, #2b2c26 70%, #0b0b09 100%);
     background-attachment: fixed;
 
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+    text-shadow: 0.15rem 0.15rem 0.0rem rgba(0, 0, 0, 0.50);
 }
 
 @font-face {
@@ -42,12 +40,6 @@ body {
 	font-size: 1.8rem;
     line-height: 1.9rem;
 	font-family: Garamond, Helvetica, Arial, sans-serif;
-
-	text-shadow:
-		0.2rem -0.2rem 0.25rem #00000066,
-		0.2rem -0.2rem 0.25rem #00000066,
-		-0.2rem 0.2rem 0.25rem #00000066,
-		0.2rem 0.2rem 0.25rem #00000066;
 }
 
 a {
@@ -56,7 +48,7 @@ a {
 
 a:link, a:active {
     color: var(--colorAccentDark);
-    font-weight: bold;
+    font-family: GaramondBold;
 }
 
 a:visited {
@@ -88,6 +80,7 @@ h1 {
     font-size: 4rem;
     line-height: 5.2rem;
     font-weight: normal;
+    font-family: GaramondBold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -99,6 +92,7 @@ h2 {
     font-size: 2.5rem;
     line-height: 2.6rem;
     font-weight: normal;
+    font-family: GaramondBold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -108,7 +102,7 @@ h2 {
 }
 
 table {
-    background-color: #0d0d0b77;
+    background-color: var(--colorBG);
     border-collapse: separate;
     border-spacing: 0.0rem 0.3rem;
     width: 100%;
@@ -117,25 +111,24 @@ table {
 }
 
 table tr {
-    background-color: #bebbb211;
+    background-color: #31302d;
     line-height: 2.2rem;
-
 }
 
-table tr:hover {
-    background-color: #bebbb222;
+table tr:nth-child(even) {
+    background-color: #35332a;
 }
 
 table tr td {
     padding: 0.25rem 0.6rem;
 }
 
-thead {
+thead tr {
     font-family: Garamond, Helvetica, Arial, sans-serif;
     color: var(--colorAccentLight);
     font-size: 1.8rem;
     line-height: 2rem;
-    background-color: #bebbb222;
+    background-color: #413d33;
 }
 
 /* Footer */

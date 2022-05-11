@@ -35,7 +35,7 @@
         <p class="mainDescription">Compare AR and Damage for Sorceries and Incantations.</p>
 
         <div id="contentBody">
-            <div id="controlsStats" class="controlsContainer">
+            <div class="controlsContainer">
                 <h2>Stats</h2>
                 <table class="statsTable">
                     <tr>
@@ -59,8 +59,9 @@
                         <td class="colStatLevelInput"><input id="statControl4" type="number" value="10" min="1" max="99"></input></td>
                     </tr>
                 </table>
+            </div>
 
-
+            <div class="controlsContainer">
                 <h2>Tools &amp; Upgrade Level</h2>
                 <table class="statsTable">
                     <tr>
@@ -92,7 +93,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
 
+            <div class="controlsContainer">
                 <h2>Defenses</h2>
                 <table class="statsTable" id="statTableDef">
                     <thead>
@@ -110,31 +113,33 @@
                     </thead>
                     <tr>
                         <td>Phyiscal</td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Magic</td>
-                        <td class="colStatLevelInput"><input id="statControl1" type="number" value="10" min="1" max="99"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Fire</td>
-                        <td class="colStatLevelInput"><input id="statControl2" type="number" value="10" min="1" max="99"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Lightning</td>
-                        <td class="colStatLevelInput"><input id="statControl3" type="number" value="10" min="1" max="99"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Holy</td>
-                        <td class="colStatLevelInput"><input id="statControl4" type="number" value="10" min="1" max="99"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10" min="1" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControl0" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                 </table>
+            </div>
 
+            <div class="controlsContainer">
                 <h2>Sort/Filter</h2>
                 <table class="statsTable">
                     <tr>
@@ -164,6 +169,9 @@
                         </td>
                     </tr>
                 </table>
+            </div>
+
+            <div class="controlsContainer">
                 <h2>Extra Spell Schools</h2>
 
                 <div id="schoolsContainer">
@@ -185,16 +193,15 @@
                     <div id="schoolSelect15" class="schoolsContainerEntry">Dragon Communion<span>&#10003;</span></div>
                     <div id="schoolSelect16" class="schoolsContainerEntry">Godskin Apostle<span>&#10003;</span></div>
                 </div>
-
             </div>
 
         </div>
 
         <div id="outputDiv">
-            <table>
+            <table id="spellList">
                 <thead>
                     <tr>
-                        <td>Name</td>
+                        <td class="displayColName">Name</td>
                         <td class="displayColType">Type</td>
                         <td class="displayColDmgType">DMG Type</td>
                         <td class="displayColType">Hit</td>
@@ -212,25 +219,274 @@
                         <td class="displayColNotes">Notes</td>
                     </tr>
                 </thead>
-                <tr>
-                    <td>Carian Slicer</td>
-                    <td class="displayColType">Sorcery</td>
-                    <td class="displayColDmgType">Magic</td>
-                    <td class="displayColHitType">Any</td>
+                <tbody>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
 
-                    <td class="displayColFP">4</td>
-                    <td class="displayColARDmg">180</td>
-                    <td class="displayColARDmg">45</td>
-                    <td class="displayColHitCount">1</td>
-                    <td class="displayColARDmg">675</td>
-                    <td class="displayColARDmg">168.75</td>
-                    <td class="displayColARDmg">442.26</td>
-                    <td class="displayColARDmg">110.56</td>
-                    <td class="displayColStat">15</td>
-                    <td class="displayColStat">0</td>
-                    <td class="displayColStat">0</td>
-                    <td class="displayColNotes">-</td>
-                </tr>
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                    <tr>
+                        <td>Carian Slicer</td>
+                        <td class="displayColType">Sorcery</td>
+                        <td class="displayColDmgType">Magic</td>
+                        <td class="displayColHitType">Any</td>
+
+                        <td class="displayColFP">4</td>
+                        <td class="displayColARDmg">180</td>
+                        <td class="displayColARDmg">45</td>
+                        <td class="displayColHitCount">1</td>
+                        <td class="displayColARDmg">675</td>
+                        <td class="displayColARDmg">168.75</td>
+                        <td class="displayColARDmg">442.26</td>
+                        <td class="displayColARDmg">110.56</td>
+                        <td class="displayColStat">15</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColStat">0</td>
+                        <td class="displayColNotes">-</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
