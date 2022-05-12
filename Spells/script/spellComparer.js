@@ -14,7 +14,7 @@ class spellComparer
             regular: 25,
             somber: 10
         },
-        sort : SORT_SCALING_ADJUSTED,
+        sort : SORT_DAMAGE_NET,
         filter : SPELL_TYPE_ALL,
         stats: [
             {
@@ -39,4 +39,19 @@ class spellComparer
             }
         ]
     };
+
+    initialize()
+    {
+        // blah
+    }
 }
+
+var toolInstance = new spellComparer();
+
+
+// Hacky VH business.
+// - for the URL bar appearing/disappearing as you scroll up/down on mobile
+window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--calculatedVH', `${vh}px`);
+  });

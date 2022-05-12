@@ -80,37 +80,16 @@
     text-align: left;
 }
 
-.displayColFP {
-    min-width: 5rem;
-}
-
-.displayColARDmg {
-    min-width: 11rem;
-}
-
-.displayColStat {
-    min-width: 3rem;
-}
-
-.displayColType {
-    min-width: 8rem;
-}
-
 .displayColName {
-    min-width: 30rem;
+    text-align: left;
+    white-space: nowrap;
 }
 
-.displayColHitType {
-    min-width: 8rem;
-}
+/*
 
-.displayColHitCount {
-    min-width: 6rem;
-}
+Table jank =======================
 
-.displayColDmgType {
-    min-width: 10rem;
-}
+*/
 
 
 #spellList thead tr th {
@@ -131,8 +110,6 @@
     z-index: 2;
 }
 
-
-
 #spellList tr td:first-child {
     left: 0;
     position: sticky;
@@ -148,9 +125,44 @@
     background-color: #35332a;
 }
 
+/* ================ */
 
-#contentBody {
-    width: 100%;
-    position: sticky;
-    left: 0;
+#outputDiv {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: calc((var(--calculatedVH) * 100) - 3rem);
 }
+
+/* Mobile support, M'lord - Boc, 2022 */
+
+@media screen and (max-width: 550px) {
+    h1 {
+        font-size: calc(100vw / 13.75);
+    }
+}
+
+@media screen and (max-width: 325px) {
+    :root {
+        font-size: 8px;
+    }
+}
+
+@media screen and (min-width: 326px) and (max-width: 375px) {
+    :root {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #spellList, #spellList thead tr th {
+        font-size: 8px;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 900px) {
+    #spellList, #spellList thead tr th {
+        font-size: calc(100vw / 50);
+    }
+}
+
+/* M'lord! M'lord! */

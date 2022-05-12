@@ -12,6 +12,7 @@
     --colorAccentDark: #afa780;
     --colorRequirementUnmet: #e46363;
     --colorSchoolBuff: #7bca71;
+    --calculatedVH: 1vh;
 }
 
 
@@ -38,7 +39,6 @@ html, body {
 body {
 	margin: 4rem 0rem 0rem 0rem;
 	font-size: 1.8rem;
-    line-height: 1.9rem;
 	font-family: Garamond, Helvetica, Arial, sans-serif;
 }
 
@@ -65,6 +65,7 @@ a:active {
 
 p {
     margin: 0.5rem 0rem;
+    padding: 0rem 0.5rem;
 }
 
 input, select, option {
@@ -112,7 +113,6 @@ table {
 
 table tr {
     background-color: #31302d;
-    line-height: 2.2rem;
 }
 
 table tr:nth-child(even) {
@@ -121,14 +121,20 @@ table tr:nth-child(even) {
 
 table tr td {
     padding: 0.25rem 0.6rem;
+    text-align: center;
 }
 
 thead tr {
     font-family: Garamond, Helvetica, Arial, sans-serif;
     color: var(--colorAccentLight);
     font-size: 1.8rem;
-    line-height: 2rem;
     background-color: #413d33;
+}
+
+table thead tr th {
+    white-space: nowrap;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
 }
 
 /* Footer */
@@ -143,6 +149,10 @@ thead tr {
     margin: 2rem auto;
     padding-bottom: 2rem;
     max-width: 80rem;
+}
+
+#footer p {
+    text-align: center;
 }
 
 #footerLinks {
