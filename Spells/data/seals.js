@@ -4,7 +4,7 @@ seals = [
     "maxLevel": 25,
     "scalingPath": 16,
     "scalingMapID": 30000,
-    "schoolName": "",
+    "magicEffectCategory": 0,
     "schoolMultiplier": 1.0,
     "requirements": {
         "strength": 4,
@@ -203,7 +203,7 @@ seals = [
     "maxLevel": 25,
     "scalingPath": 16,
     "scalingMapID": 30000,
-    "schoolName": "Godskin Apostle",
+    "magicEffectCategory": 20,
     "schoolMultiplier": 1.1,
     "requirements": {
         "strength": 4,
@@ -402,7 +402,7 @@ seals = [
     "maxLevel": 25,
     "scalingPath": 16,
     "scalingMapID": 30000,
-    "schoolName": "Fire Monk/Giant",
+    "magicEffectCategory": 21,
     "schoolMultiplier": 1.2,
     "requirements": {
         "strength": 4,
@@ -601,7 +601,7 @@ seals = [
     "maxLevel": 25,
     "scalingPath": 16,
     "scalingMapID": 30000,
-    "schoolName": "Dragon Cult",
+    "magicEffectCategory": 22,
     "schoolMultiplier": 1.15,
     "requirements": {
         "strength": 4,
@@ -800,7 +800,7 @@ seals = [
     "maxLevel": 25,
     "scalingPath": 12,
     "scalingMapID": 30020,
-    "schoolName": "Bestial",
+    "magicEffectCategory": 23,
     "schoolMultiplier": 1.1,
     "requirements": {
         "strength": 4,
@@ -999,7 +999,7 @@ seals = [
     "maxLevel": 10,
     "scalingPath": 12,
     "scalingMapID": 30010,
-    "schoolName": "Golden Order",
+    "magicEffectCategory": 24,
     "schoolMultiplier": 1.1,
     "requirements": {
         "strength": 0,
@@ -1198,7 +1198,7 @@ seals = [
     "maxLevel": 10,
     "scalingPath": 15,
     "scalingMapID": 30000,
-    "schoolName": "",
+    "magicEffectCategory": 0,
     "schoolMultiplier": 1.0,
     "requirements": {
         "strength": 4,
@@ -1397,7 +1397,7 @@ seals = [
     "maxLevel": 10,
     "scalingPath": 12,
     "scalingMapID": 30030,
-    "schoolName": "Dragon Communion",
+    "magicEffectCategory": 25,
     "schoolMultiplier": 1.15,
     "requirements": {
         "strength": 0,
@@ -1596,7 +1596,7 @@ seals = [
     "maxLevel": 10,
     "scalingPath": 12,
     "scalingMapID": 30040,
-    "schoolName": "Frenzied Flame",
+    "magicEffectCategory": 26,
     "schoolMultiplier": 1.2,
     "requirements": {
         "strength": 0,

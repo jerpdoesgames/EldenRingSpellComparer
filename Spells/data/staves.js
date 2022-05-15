@@ -4,7 +4,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 6,
@@ -203,7 +203,7 @@ staves = [
         "maxLevel": 10,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "Crystalian",
+        "magicEffectCategory": 5,
         "schoolMultiplier": 1.1,
         "requirements": {
             "strength": 8,
@@ -402,7 +402,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 12,
         "scalingMapID": 20010,
-        "schoolName": "Lava",
+        "magicEffectCategory": 8,
         "schoolMultiplier": 1.15,
         "requirements": {
             "strength": 6,
@@ -601,7 +601,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 14,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 6,
@@ -801,7 +801,7 @@ staves = [
         "maxLevel": 10,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "Full Moon",
+        "magicEffectCategory": 1,
         "schoolMultiplier": 1.1,
         "requirements": {
             "strength": 8,
@@ -1000,7 +1000,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "Stonedigger",
+        "magicEffectCategory": 4,
         "schoolMultiplier": 1.2,
         "requirements": {
             "strength": 8,
@@ -1199,7 +1199,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 7,
@@ -1398,7 +1398,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "Glintblade",
+        "magicEffectCategory": 3,
         "schoolMultiplier": 1.15,
         "requirements": {
             "strength": 6,
@@ -1597,7 +1597,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 15,
         "scalingMapID": 20010,
-        "schoolName": "Death",
+        "magicEffectCategory": 10,
         "schoolMultiplier": 1.3,
         "requirements": {
             "strength": 6,
@@ -1796,7 +1796,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 12,
         "scalingMapID": 20030,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 6,
@@ -1995,7 +1995,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 6,
@@ -2194,7 +2194,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "Carian Sword",
+        "magicEffectCategory": 2,
         "schoolMultiplier": 1.15,
         "requirements": {
             "strength": 6,
@@ -2393,7 +2393,7 @@ staves = [
         "maxLevel": 10,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 10,
@@ -2592,7 +2592,7 @@ staves = [
         "maxLevel": 10,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 10,
@@ -2791,7 +2791,7 @@ staves = [
         "maxLevel": 0,
         "scalingPath": 16,
         "scalingMapID": 20000,
-        "schoolName": "Gravity",
+        "magicEffectCategory": 11,
         "schoolMultiplier": 1.3,
         "requirements": {
             "strength": 6,
@@ -2990,7 +2990,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 16,
         "scalingMapID": 20020,
-        "schoolName": "Thorn",
+        "magicEffectCategory": 9,
         "schoolMultiplier": 1.2,
         "requirements": {
             "strength": 8,
@@ -3189,7 +3189,7 @@ staves = [
         "maxLevel": 10,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "Crystalian",
+        "magicEffectCategory": 0,
         "schoolMultiplier": 1.1,
         "requirements": {
             "strength": 8,
@@ -3388,7 +3388,7 @@ staves = [
         "maxLevel": 25,
         "scalingPath": 15,
         "scalingMapID": 20000,
-        "schoolName": "Invisibility",
+        "magicEffectCategory": 12,
         "schoolMultiplier": 1.3,
         "requirements": {
             "strength": 6,
