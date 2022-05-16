@@ -76,20 +76,14 @@
                     <tr>
                         <td>Staff</td>
                         <td class="colSelectionInput">
-                            <select id="controlSpellType">
-                                <option value="0">Astrologer Staff</option>
-                                <option value="1">Carian Glintstone Staff</option>
-                                <option value="2">Carian Regal Scepter</option>
+                            <select id="controlStaff">
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Seal</td>
                         <td class="colSelectionInput">
-                            <select id="controlSpellType">
-                                <option value="0">Finger Seal</option>
-                                <option value="1">Frenzyflame Seal</option>
-                                <option value="2">Dragon Communion Seal</option>
+                            <select id="controlSeal">
                             </select>
                         </td>
                     </tr>
@@ -114,28 +108,28 @@
                     </thead>
                     <tr>
                         <td>Phyiscal</td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlDefense0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlNegation0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Magic</td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlDefense1" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlNegation1" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Fire</td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlDefense2" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlNegation2" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Lightning</td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlDefense3" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlNegation3" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                     <tr>
                         <td>Holy</td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
-                        <td class="colStatLevelInput"><input id="statControl0" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlDefense4" onfocus="this.select();" type="number" value="90" min="1" max="250"></input></td>
+                        <td class="colStatLevelInput"><input id="statControlNegation4" onfocus="this.select();" type="number" value="10.00" min="0" max="99"></input></td>
                     </tr>
                 </table>
             </div>
@@ -160,10 +154,10 @@
                                 <option value="0">Name</option>
                                 <option value="1">FP Cost</option>
                                 <option value="2">Base AR</option>
-                                <option value="3">Base AR:FP</option>
-                                <option value="4">Net AR</option>
-                                <option value="5">Net AR/FP</option>
-                                <option value="6">Net DMG</option>
+                                <option value="3">Net AR</option>
+                                <option value="4">Net DMG</option>
+                                <option value="5">Base AR:FP</option>
+                                <option value="6">Net AR/FP</option>
                                 <option value="7">Net DMG/FP</option>
 
                             </select>
@@ -176,23 +170,7 @@
                 <h2>Extra Spell Schools</h2>
 
                 <div id="schoolsContainer">
-                    <div id="schoolSelect0" class="schoolsContainerEntry">Stonedigger<span>&#10003;</span></div>
-                    <div id="schoolSelect1" class="schoolsContainerEntry">Full Moon<span>&#10003;</span></div>
-                    <div id="schoolSelect2" class="schoolsContainerEntry">Carian Sword<span>&#10003;</span></div>
-                    <div id="schoolSelect3" class="schoolsContainerEntry">Invisibility<span>&#10003;</span></div>
-                    <div id="schoolSelect4" class="schoolsContainerEntry">Gravity<span>&#10003;</span></div>
-                    <div id="schoolSelect5" class="schoolsContainerEntry">Crystalian<span>&#10003;</span></div>
-                    <div id="schoolSelect6" class="schoolsContainerEntry">Thorn<span>&#10003;</span></div>
-                    <div id="schoolSelect7" class="schoolsContainerEntry">Death<span>&#10003;</span></div>
-                    <div id="schoolSelect8" class="schoolsContainerEntry">Glintblade<span>&#10003;</span></div>
-                    <div id="schoolSelect9" class="schoolsContainerEntry">Lava<span>&#10003;</span></div>
-                    <div id="schoolSelect10" class="schoolsContainerEntry">Golden Order<span>&#10003;</span></div>
-                    <div id="schoolSelect11" class="schoolsContainerEntry">Dragon Cult<span>&#10003;</span></div>
-                    <div id="schoolSelect12" class="schoolsContainerEntry">Fire Monk/Giant<span>&#10003;</span></div>
-                    <div id="schoolSelect13" class="schoolsContainerEntry">Bestial<span>&#10003;</span></div>
-                    <div id="schoolSelect14" class="schoolsContainerEntry">Frenzied Flame<span>&#10003;</span></div>
-                    <div id="schoolSelect15" class="schoolsContainerEntry">Dragon Communion<span>&#10003;</span></div>
-                    <div id="schoolSelect16" class="schoolsContainerEntry">Godskin Apostle<span>&#10003;</span></div>
+
                 </div>
             </div>
 
