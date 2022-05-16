@@ -1,4 +1,4 @@
-staves = [
+var staves = [
     {
         "name": "Glintstone Staff",
         "maxLevel": 25,

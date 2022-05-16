@@ -1,10 +1,5 @@
 var spellSchools = [
 	{
-		name: "Stonedigger",
-		type: SPELL_TYPE_SORCERY,
-        magicEffectCategory: 4
-	},
-	{
 		name: "Full Moon",
 		type: SPELL_TYPE_SORCERY,
         magicEffectCategory: 1
@@ -15,19 +10,24 @@ var spellSchools = [
         magicEffectCategory: 2
 	},
 	{
-		name: "Invisibility",
+		name: "Glintblade",
 		type: SPELL_TYPE_SORCERY,
-        magicEffectCategory: 12
+        magicEffectCategory: 3
 	},
 	{
-		name: "Gravity",
+		name: "Stonedigger",
 		type: SPELL_TYPE_SORCERY,
-        magicEffectCategory: 11
+        magicEffectCategory: 4
 	},
 	{
 		name: "Crystalian",
 		type: SPELL_TYPE_SORCERY,
         magicEffectCategory: 5
+	},
+	{
+		name: "Lava",
+		type: SPELL_TYPE_SORCERY,
+        magicEffectCategory: 8
 	},
 	{
 		name: "Thorn",
@@ -40,24 +40,19 @@ var spellSchools = [
         magicEffectCategory: 10
 	},
 	{
-		name: "Glintblade",
+		name: "Gravity",
 		type: SPELL_TYPE_SORCERY,
-        magicEffectCategory: 3
+        magicEffectCategory: 11
 	},
 	{
-		name: "Lava",
+		name: "Invisibility",
 		type: SPELL_TYPE_SORCERY,
-        magicEffectCategory: 8
+        magicEffectCategory: 12
 	},
 	{
-		name: "Golden Order",
+		name: "Godskin Apostle",
 		type: SPELL_TYPE_INCANTATION,
-        magicEffectCategory: 24
-	},
-	{
-		name: "Dragon Cult",
-		type: SPELL_TYPE_INCANTATION,
-        magicEffectCategory: 22
+        magicEffectCategory: 20
 	},
 	{
 		name: "Fire Monk/Giant",
@@ -65,14 +60,19 @@ var spellSchools = [
         magicEffectCategory: 21
 	},
 	{
+		name: "Dragon Cult",
+		type: SPELL_TYPE_INCANTATION,
+        magicEffectCategory: 22
+	},
+	{
 		name: "Bestial",
 		type: SPELL_TYPE_INCANTATION,
         magicEffectCategory: 23
 	},
 	{
-		name: "Frenzied Flame",
+		name: "Golden Order",
 		type: SPELL_TYPE_INCANTATION,
-        magicEffectCategory: 26
+        magicEffectCategory: 24
 	},
 	{
 		name: "Dragon Communion",
@@ -80,8 +80,8 @@ var spellSchools = [
         magicEffectCategory: 25
 	},
 	{
-		name: "Godskin Apostle",
+		name: "Frenzied Flame",
 		type: SPELL_TYPE_INCANTATION,
-        magicEffectCategory: 20
-	},
+        magicEffectCategory: 26
+	}
 ];

@@ -1,4 +1,4 @@
-seals = [
+var seals = [
   {
     "name": "Finger Seal",
     "maxLevel": 25,

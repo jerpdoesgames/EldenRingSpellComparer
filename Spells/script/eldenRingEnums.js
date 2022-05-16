@@ -7,11 +7,13 @@ const STAT_INTELLIGENCE = 2;
 const STAT_FAITH = 3;
 const STAT_ARCANE = 4;
 
-const DAMAGE_PHYSICAL = 0;
-const DAMAGE_MAGIC = 1;
-const DAMAGE_FIRE = 2;
-const DAMAGE_LIGHTNING = 3;
-const DAMAGE_ARCANE = 4;
+const DAMAGE_MIXED = -1;
+const DAMAGE_ANY = 0;
+const DAMAGE_PHYSICAL = 1;
+const DAMAGE_MAGIC = 2;
+const DAMAGE_FIRE = 3;
+const DAMAGE_LIGHTNING = 4;
+const DAMAGE_HOLY = 5;
 
 const SPELL_TYPE_ALL = 0;
 const SPELL_TYPE_SORCERY = 1;

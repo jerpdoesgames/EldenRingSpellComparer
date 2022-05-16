@@ -30,6 +30,16 @@
     color: var(--colorAccentDark);
     float: right;
     display: none;
+    line-height: 115%;
+    margin-right: 0.25rem;
+}
+
+.schoolsContainerEntrySelected1 .schoolCheck1 {
+    display: inline;
+}
+
+.schoolsContainerEntrySelected2 .schoolCheck2 {
+    display: inline;
 }
 
 .requirementUnmet {
