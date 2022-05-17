@@ -6,6 +6,7 @@ var seals = [
     "scalingMapID": 30000,
     "magicEffectCategory": 0,
     "schoolMultiplier": 1.0,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -205,6 +206,7 @@ var seals = [
     "scalingMapID": 30000,
     "magicEffectCategory": 20,
     "schoolMultiplier": 1.1,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -404,6 +406,7 @@ var seals = [
     "scalingMapID": 30000,
     "magicEffectCategory": 21,
     "schoolMultiplier": 1.2,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -603,6 +606,7 @@ var seals = [
     "scalingMapID": 30000,
     "magicEffectCategory": 22,
     "schoolMultiplier": 1.15,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -802,6 +806,7 @@ var seals = [
     "scalingMapID": 30020,
     "magicEffectCategory": 23,
     "schoolMultiplier": 1.1,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -1001,6 +1006,7 @@ var seals = [
     "scalingMapID": 30010,
     "magicEffectCategory": 24,
     "schoolMultiplier": 1.1,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 0,
         "dexterity": 0,
@@ -1200,6 +1206,7 @@ var seals = [
     "scalingMapID": 30000,
     "magicEffectCategory": 0,
     "schoolMultiplier": 1.0,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 4,
         "dexterity": 0,
@@ -1399,6 +1406,7 @@ var seals = [
     "scalingMapID": 30030,
     "magicEffectCategory": 25,
     "schoolMultiplier": 1.15,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 0,
         "dexterity": 0,
@@ -1598,6 +1606,7 @@ var seals = [
     "scalingMapID": 30040,
     "magicEffectCategory": 26,
     "schoolMultiplier": 1.2,
+    "fpCostMultiplier": 1.0,
     "requirements": {
         "strength": 0,
         "dexterity": 0,

@@ -405,33 +405,30 @@ class spellComparer
             }
         }
 
-
         let output = "";
         let outputRows = [];
 
         for (let spellIndex = 0; spellIndex < spellData.length; spellIndex++)
         {
             let curSpell = spellData[spellIndex];
+            let curTool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
 
             if (this.configuration.filter == SPELL_TYPE_ALL || this.configuration.filter == curSpell.toolType)
             {
-
                 if (curSpell.hitData.length > 0)
                 {
-
                     let hitDisplayEntries = [];
                     let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curSpell.intelligence);
                     let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
                     let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curSpell.arcane);
 
                     let schoolMultiplier = 1.0;
-                    let useSpelltool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
 
                     if (curSpell.magicEffectCategory > 0)
                     {
-                        if (curSpell.magicEffectCategory == useSpelltool.magicEffectCategory)
+                        if (curSpell.magicEffectCategory == curTool.magicEffectCategory)
                         {
-                            schoolMultiplier *= useSpelltool.schoolMultiplier;
+                            schoolMultiplier *= curTool.schoolMultiplier;
                         }
 
                         for (let schoolIndex = 0; schoolIndex < spellSchools.length; schoolIndex++)
@@ -446,8 +443,6 @@ class spellComparer
                             }
                         }
                     }
-
-
 
                     if (!reqMetIntelligence || !reqMetFaith || !reqMetArcane)
                     {
@@ -526,6 +521,7 @@ class spellComparer
 
                         let curDisplayEntry = hitDisplayEntries[displayIndex];
                         let useFPCost = curDisplayEntry.fpCostOverride > 0 ? curDisplayEntry.fpCostOverride : curSpell.fpCostBase;
+                        useFPCost = Math.ceil(curTool.fpCostMultiplier * useFPCost);
                         let damageTypeString = this.getDamageTypeString(curDisplayEntry.damageType);
                         let schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
                         let netDamageFP = schoolBoostedDamage / useFPCost;

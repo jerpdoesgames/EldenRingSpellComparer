@@ -6,6 +6,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -205,6 +206,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 5,
         "schoolMultiplier": 1.1,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 0,
@@ -404,6 +406,7 @@ var staves = [
         "scalingMapID": 20010,
         "magicEffectCategory": 8,
         "schoolMultiplier": 1.15,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -603,6 +606,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -803,6 +807,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 1,
         "schoolMultiplier": 1.1,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 10,
@@ -1002,6 +1007,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 4,
         "schoolMultiplier": 1.2,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 0,
@@ -1201,6 +1207,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -1400,6 +1407,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 3,
         "schoolMultiplier": 1.15,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 12,
@@ -1599,6 +1607,7 @@ var staves = [
         "scalingMapID": 20010,
         "magicEffectCategory": 10,
         "schoolMultiplier": 1.3,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -1798,6 +1807,7 @@ var staves = [
         "scalingMapID": 20030,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -1997,6 +2007,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -2196,6 +2207,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 2,
         "schoolMultiplier": 1.15,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 8,
@@ -2395,6 +2407,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.5,
         "requirements": {
             "strength": 10,
             "dexterity": 0,
@@ -2594,6 +2607,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.5,
         "requirements": {
             "strength": 10,
             "dexterity": 0,
@@ -2793,6 +2807,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 11,
         "schoolMultiplier": 1.3,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 0,
@@ -2992,6 +3007,7 @@ var staves = [
         "scalingMapID": 20020,
         "magicEffectCategory": 9,
         "schoolMultiplier": 1.2,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 0,
@@ -3191,6 +3207,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 0,
@@ -3390,6 +3407,7 @@ var staves = [
         "scalingMapID": 20000,
         "magicEffectCategory": 12,
         "schoolMultiplier": 1.3,
+        "fpCostMultiplier": 1.0,
         "requirements": {
             "strength": 6,
             "dexterity": 12,
