@@ -405,6 +405,34 @@ class spellComparer
             }
         }
 
+        if (reqMetStaff)
+        {
+            let totalScaling = 100;
+            for (let i = 0; i < scalingStaff.length; i++)
+            {
+                totalScaling += scalingStaff[i];
+            }
+            this.scalingDisplayStaff.innerHTML = Math.floor(totalScaling);
+        }
+        else
+        {
+            this.scalingDisplayStaff.innerHTML = "60";
+        }
+
+        if (reqMetSeal)
+        {
+            let totalScaling = 100;
+            for (let i = 0; i < scalingSeal.length; i++)
+            {
+                totalScaling += scalingSeal[i];
+            }
+            this.scalingDisplaySeal.innerHTML = Math.floor(totalScaling);
+        }
+        else
+        {
+            this.scalingDisplaySeal.innerHTML = "60";
+        }
+
         let output = "";
         let outputRows = [];
 
@@ -664,6 +692,9 @@ class spellComparer
 
         document.getElementById("controlSpellType").addEventListener("change", this.toolFilterChange.bind(this));
         document.getElementById("controlSorting").addEventListener("change", this.onSortChange.bind(this));
+
+        this.scalingDisplayStaff = document.getElementById("scalingStaff");
+        this.scalingDisplaySeal = document.getElementById("scalingSeal");
 
         this.schoolsContainer = document.getElementById("schoolsContainer");
         this.populateSchoolList();
