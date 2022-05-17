@@ -1,6 +1,6 @@
 class eldenRingScalingCalc
 {
-	statNames = [
+	static statNames = [
 		"strength",
 		"dexterity",
 		"intelligence",
@@ -8,7 +8,7 @@ class eldenRingScalingCalc
 		"arcane"
 	];
 
-    damageTypeNames = [
+    static damageTypeNames = [
         "physical",
         "magic",
         "fire",
@@ -16,7 +16,7 @@ class eldenRingScalingCalc
         "holy"
     ]
 
-    getScalingMapByID(aMapID)
+    static getScalingMapByID(aMapID)
     {
         for (var i = 0; i < statScalingMap.length; i++)
         {
@@ -27,19 +27,19 @@ class eldenRingScalingCalc
         }
     }
 
-    isToolScaledByStat(aTool, aStatIndex, aDamageTypeIndex)
+    static isToolScaledByStat(aTool, aStatIndex, aDamageTypeIndex)
     {
         let scalingMap = this.getScalingMapByID(aTool.scalingMapID);
         return (scalingMap != null && scalingMap[this.damageTypeNames[aDamageTypeIndex]][this.statNames[aStatIndex]]);
     }
 
-    isToolRequiredStatMet(aTool, aStatIndex, aStatValue)
+    static isToolRequiredStatMet(aTool, aStatIndex, aStatValue)
     {
 		let toolReq = aTool.requirements[this.statNames[aStatIndex]];
 		return aStatValue >= toolReq;
     }
 
-    calculateToolScalingForStat(aTool, aStatIndex, aDamageTypeIndex, aWeaponLevel)
+    static calculateToolScalingForStat(aTool, aStatIndex, aDamageTypeIndex, aWeaponLevel)
     {
         let statIndex = aStatValue - 1;
         let scalingMap = this.getScalingMapByID(aTool.scalingMapID);
@@ -57,5 +57,5 @@ class eldenRingScalingCalc
         {
             return 0;
         }
-    }	
+    }
 }

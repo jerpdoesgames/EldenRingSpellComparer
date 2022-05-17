@@ -1,11 +1,11 @@
 const SORT_NAME = 0;
 const SORT_FP_COST = 1;
-const SORT_AR_BASE = 2;
-const SORT_AR_NET = 3;
-const SORT_DAMAGE_NET = 4;
-const SORT_AR_FP = 5;
-const SORT_AR_FP_NET = 6;
-const SORT_DMG_FP = 7;
+const SORT_AR_NET = 2;
+const SORT_DAMAGE_NET = 3;
+const SORT_AR_FP_NET = 4;
+const SORT_DMG_FP = 5;
+
+const ATTACK_INDEX_MAX = 2;
 
 class spellComparer
 {
@@ -13,7 +13,7 @@ class spellComparer
     configuration = {
         selectedStaff: 0,
         selectedSeal: 0,
-        showCharged = false,
+        showCharged : false,
         weaponLevels : {
             regular: 25,
             somber: 10
@@ -40,7 +40,7 @@ class spellComparer
                 negation: 10.00
             }
         ],
-        sort : SORT_DAMAGE_NET,
+        sort : SORT_DMG_FP,
         filter : SPELL_TYPE_ALL,
         stats: [
             {
@@ -88,42 +88,60 @@ class spellComparer
         return "Unknown";
     }
 
-    combineHitData(aHitDataList)
+    combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false)
     {
         let displayEntry = {};
         let damageType = 0;
+        let foundValidHits = false;
+        displayEntry.netDamage = 0;
+        displayEntry.hitCount = 0;
+        displayEntry.netAR = 0;
+        let hitNotes = [];
 
         for (let hitIndex = 0; hitIndex < aHitDataList.length; hitIndex++)
         {
             let curHitData = aHitDataList[hitIndex];
-            if (damageType != DAMAGE_MIXED && curHitData.damageType > 0)
-            {
-                if (damageType > 0 && curHitData.damageType != damageType)
-                {
-                    damageType = DAMAGE_MIXED;
-                }
-                else
-                {
-                    damageType = curHitData.damageType;
-                }
 
-                displayEntry.damageType = damageType;
+            if ((aAttackIndex == -1 || curHitData.attackIndex == aAttackIndex) && curHitData.isCharged == aIsCharged)
+            {
+                if (damageType != DAMAGE_MIXED && curHitData.damageType > 0)
+                {
+                    if (damageType > 0 && curHitData.damageType != damageType)
+                    {
+                        damageType = DAMAGE_MIXED;
+                    }
+                    else
+                    {
+                        damageType = curHitData.damageType;
+                    }
+
+                    let checkDamageTypeIndex = curHitData.damageType - 1;
+                    displayEntry.netDamage += (curHitData.hitCount * eldenRingDamageCalc.reduceARByAllDefenses(curHitData.attackRating, this.configuration.damageTypes[checkDamageTypeIndex].defense, this.configuration.damageTypes[checkDamageTypeIndex].negation));
+
+                    displayEntry.hitCount += curHitData.hitCount;
+                    displayEntry.netAR += (curHitData.attackRating * curHitData.hitCount);
+                    if (curHitData.hitTypeNote != "")
+                    {
+                        hitNotes.push(curHitData.hitTypeNote);
+                    }
+                    foundValidHits = true;
+                }
             }
+
         }
 
-        return displayEntry;
+        displayEntry.damageType = damageType;
+        displayEntry.hitNote = hitNotes.join(", ");
+
+        return foundValidHits ? displayEntry : null;
     }
 
     toggleSpellSchool(aEvent)
     {
         let schoolIndex = parseInt(aEvent.target.id.substring(12));
-        if (spellSchools[schoolIndex].activeCount >= 2)
+        if (spellSchools[schoolIndex].activeCount >= 1)
         {
             spellSchools[schoolIndex].activeCount = 0;
-        }
-        else if (spellSchools[schoolIndex].activeCount == 1)
-        {
-            spellSchools[schoolIndex].activeCount = 2;
         }
         else
         {
@@ -174,6 +192,21 @@ class spellComparer
     {
         let controlValue = parseInt(aEvent.target.value);
         this.configuration.filter = controlValue;
+        this.updateDisplay();
+    }
+
+
+    toolStaffChange(aEvent)
+    {
+        let controlValue = parseInt(aEvent.target.value);
+        this.configuration.selectedStaff = controlValue;
+        this.updateDisplay();
+    }
+
+    toolSealChange(aEvent)
+    {
+        let controlValue = parseInt(aEvent.target.value);
+        this.configuration.selectedSeal = controlValue;
         this.updateDisplay();
     }
 
@@ -244,91 +277,213 @@ class spellComparer
         }
     }
 
+    getMatchingHitData(aHitData, aAttackIndex, aHitIndex)
+    {
+        for (let i = 0; i < aHitData.length; i++)
+        {
+            if (aHitData[i].attackIndex == aAttackIndex && aHitData[i].hitIndex == aHitIndex)
+            {
+                return aHitData[i];
+            }
+        }
+
+        return null;
+    }
+
+    formatDamageForDisplay(aInputValue)
+    {
+        if (aInputValue == 0)
+        {
+            return "-";
+        }
+        else
+        {
+            return Math.round(aInputValue * 100) / 100;
+        }
+    }
+
+    // Ascending
+    sortByName(a, b)
+    {
+        return a.name < b.name ? -1 : 1;
+    }
+
+    // Descending
+    sortByNetAR(a, b)
+    {
+        return b.netAR - a.netAR;
+    }
+
+    // Descending
+    sortByNetDamage(a, b)
+    {
+        return b.netDamage - a.netDamage;
+    }
+
+    // Descending
+    sortByNetARFP(a, b)
+    {
+        return b.netARFP - a.netARFP;
+    }
+
+    // Descending
+    sortByNetDamageFP(a, b)
+    {
+        return b.netDamageFP - a.netDamageFP;
+    }
+
+    sortByFPCost(a, b)
+    {
+        return b.fpCost - a.fpCost;
+    }
+
+
     updateDisplay()
     {
         this.updateSchoolChecks();
 
+        let scalingStaff = [];
+        let scalingSeal = [];
 
 
         let output = "";
-
+        let outputRows = [];
 
         for (let spellIndex = 0; spellIndex < spellData.length; spellIndex++)
         {
             let curSpell = spellData[spellIndex];
-            let displayEntries = [];
 
-            if (curSpell.hitData.length > 0)
+            if (this.configuration.filter == SPELL_TYPE_ALL || this.configuration.filter == curSpell.toolType)
             {
-                if (curSpell.hitDisplayData.length == 0)
-                {
-                    displayEntries = this.combineHitData(curSpell.hitData);
-                }
-                else
+
+                if (curSpell.hitData.length > 0)
                 {
 
-                    for (let displayIndex = 0; displayIndex < curSpell.hitDisplayData.length; displayIndex++)
+                    let hitDisplayEntries = [];
+                    let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curSpell.intelligence);
+                    let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
+                    let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curSpell.arcane);
+
+                    if (!reqMetIntelligence || !reqMetFaith || !reqMetArcane)
                     {
-                        let curDisplayEntry = curSpell.hitDisplayData[displayIndex];
-                        let hitEntries = [];
+                        // Maybe show these?
+                    }
+                    else
+                    {
+                        let useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
 
-                        for (let hitIndex = 0; hitIndex < curDisplayEntry.componentHits.length; hitIndex++)
+                        if (curSpell.hitDisplayData.length == 0)
                         {
-
+                            for (let attackIndex = 0; attackIndex < ATTACK_INDEX_MAX; attackIndex++)
+                            {
+                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR);
+                                if (curDisplayEntry != null)
+                                {
+                                    hitDisplayEntries.push(curDisplayEntry);
+                                }
+                            }
                         }
+                        else
+                        {
+                            for (let displayIndex = 0; displayIndex < curSpell.hitDisplayData.length; displayIndex++)
+                            {
+                                let curDisplayEntry = curSpell.hitDisplayData[displayIndex];
+                                let hitEntries = [];
 
-                        displayEntries.push(this.combineHitData(hitEntries));
+                                for (let hitIndex = 0; hitIndex < curDisplayEntry.componentHits.length; hitIndex++)
+                                {
+                                    let foundHitData = this.getMatchingHitData(curSpell.hitData, curDisplayEntry.componentHits[hitIndex].attackIndex, curDisplayEntry.componentHits[hitIndex].hitIndex);
+                                    if (foundHitData != null)
+                                    {
+                                        hitEntries.push(foundHitData);
+                                    }
+                                }
+
+                                hitDisplayEntries.push(this.combineHitData(hitEntries, -1, useChargedAR));
+                            }
+                        }
+                    }
+
+                    let toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
+                    for (let displayIndex = 0; displayIndex < hitDisplayEntries.length; displayIndex++)
+                    {
+                        let curDisplayEntry = hitDisplayEntries[displayIndex];
+                        let damageTypeString = this.getDamageTypeString(curDisplayEntry.damageType);
+                        let netDamageFP = curDisplayEntry.netDamage / curSpell.fpCostBase;
+                        let netARFP = curDisplayEntry.netAR / curSpell.fpCostBase;
+
+                        outputRows.push({
+                            name: curSpell.name,
+                            type: toolTypestring,
+                            damageType: damageTypeString,
+                            hitNote: curDisplayEntry.hitNote,
+                            fpCost: curSpell.fpCostBase,
+                            hitCount: curDisplayEntry.hitCount,
+                            netAR: curDisplayEntry.netAR,
+                            netARFP: netARFP,
+                            netDamage: curDisplayEntry.netDamage,
+                            netDamageFP: netDamageFP,
+                            intelligence: curSpell.intelligence,
+                            faith: curSpell.faith,
+                            arcane: curSpell.arcane,
+                        });
                     }
                 }
-
-
-                let toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
-
-                output += `
-                    <tr>
-                        <td class="displayColName">${curSpell.name}</td>
-                        <td class="displayColType">${toolTypestring}</td>
-                        <td class="displayColDmgType">DamageType</td>
-                        <td class="displayColHitType">Any</td>
-                        <td class="displayColFP">${curSpell.fpCostBase}</td>
-                        <td class="displayColARDmg">180</td>
-                        <td class="displayColARDmg">45</td>
-                        <td class="displayColHitCount">1</td>
-                        <td class="displayColARDmg">675</td>
-                        <td class="displayColARDmg">168.75</td>
-                        <td class="displayColARDmg">442.26</td>
-                        <td class="displayColARDmg">110.56</td>
-                        <td class="displayColStat">${curSpell.intelligence}</td>
-                        <td class="displayColStat">${curSpell.faith}</td>
-                        <td class="displayColStat">${curSpell.arcane}</td>
-                        <td class="displayColNotes">-</td>
-                    </tr>
-                `;
             }
-
-
         }
 
-        /*
-            <tr>
-                <td class="displayColName">Aspects of the Crucible: Tail</td>
-                <td class="displayColType">Sorcery</td>
-                <td class="displayColDmgType">Magic</td>
-                <td class="displayColHitType">Any</td>
-                <td class="displayColFP">4</td>
-                <td class="displayColARDmg">180</td>
-                <td class="displayColARDmg">45</td>
-                <td class="displayColHitCount">1</td>
-                <td class="displayColARDmg">675</td>
-                <td class="displayColARDmg">168.75</td>
-                <td class="displayColARDmg">442.26</td>
-                <td class="displayColARDmg">110.56</td>
-                <td class="displayColStat">15</td>
-                <td class="displayColStat">0</td>
-                <td class="displayColStat">0</td>
-                <td class="displayColNotes">-</td>
-            </tr>
-        */
+        switch(this.configuration.sort)
+        {
+            case SORT_NAME:
+                outputRows.sort(this.sortByName);
+                break;
+            case SORT_FP_COST:
+                outputRows.sort(this.sortByFPCost);
+                break;
+            case SORT_AR_NET:
+                outputRows.sort(this.sortByNetAR);
+                break;
+            case SORT_DAMAGE_NET:
+                outputRows.sort(this.sortByNetDamage);
+                break;
+            case SORT_AR_FP_NET:
+                outputRows.sort(this.sortByNetARFP);
+                break;
+            case SORT_DMG_FP:
+                outputRows.sort(this.sortByNetDamageFP);
+                break;
+        }
+
+        for (let outputIndex = 0; outputIndex < outputRows.length; outputIndex++)
+        {
+            let curRow = outputRows[outputIndex];
+
+            let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curRow.intelligence);
+            let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curRow.faith);
+            let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curRow.arcane);
+
+            let reqClassIntelligence = reqMetIntelligence ? "" : " requirementUnmet";
+            let reqClassFaith = reqMetFaith ? "" : " requirementUnmet";
+            let reqClassArcane = reqMetArcane ? "" : " requirementUnmet";
+
+            output += `
+                <tr>
+                    <td class="displayColName">${curRow.name}</td>
+                    <td class="displayColType">${curRow.type}</td>
+                    <td class="displayColDmgType">${curRow.damageType}</td>
+                    <td class="displayColHitType">${curRow.hitNote}</td>
+                    <td class="displayColFP">${curRow.fpCost}</td>
+                    <td class="displayColHitCount">${curRow.hitCount}</td>
+                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netAR)}</td>
+                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netARFP)}</td>
+                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamage)}</td>
+                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamageFP)}</td>
+                    <td class="displayColStat${reqClassIntelligence}">${curRow.intelligence}</td>
+                    <td class="displayColStat${reqClassFaith}">${curRow.faith}</td>
+                    <td class="displayColStat${reqClassArcane}">${curRow.arcane}</td>
+                </tr>
+            `;
+        }
 
         this.contentElement.innerHTML = `
         <table id="spellList">
@@ -339,8 +494,6 @@ class spellComparer
                     <th class="displayColDmgType">DMG Type</th>
                     <th class="displayColType">Hit</th>
                     <th class="displayColFP">FP</th>
-                    <th class="displayColARDmg">Base AR</th>
-                    <th class="displayColARDmg">Base AR/FP</th>
                     <th class="displayColHitCount">Hits</th>
                     <th class="displayColARDmg">Net AR</th>
                     <th class="displayColARDmg">Net AR/FP</th>
@@ -349,7 +502,6 @@ class spellComparer
                     <th class="displayColStat">Int</th>
                     <th class="displayColStat">Fai</th>
                     <th class="displayColStat">Arc</th>
-                    <th class="displayColNotes">Notes</th>
                 </tr>
             </thead>
             <tbody>
@@ -366,6 +518,9 @@ class spellComparer
         this.controlSpellType = document.getElementById("controlSpellType");
         this.controlStaff = document.getElementById("controlStaff");
         this.controlSeal = document.getElementById("controlSeal");
+
+        this.controlStaff.addEventListener("change", this.toolStaffChange.bind(this));
+        this.controlSeal.addEventListener("change", this.toolSealChange.bind(this));
 
         this.defenseControls = [];
         for (let i = 0; i < this.configuration.damageTypes.length; i++)

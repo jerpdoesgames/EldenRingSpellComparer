@@ -1977,7 +1977,7 @@ var spellData = [
         {
           "name": "Meteorite",
           "attackRating": 180,
-          "damageType": 0,
+          "damageType": 1,
           "attackIndex": 0,
           "hitIndex": 0,
           "hitTypeNote": "",
@@ -2044,7 +2044,7 @@ var spellData = [
         {
           "name": "Meteorite of Astel",
           "attackRating": 185,
-          "damageType": 0,
+          "damageType": 1,
           "attackIndex": 0,
           "hitIndex": 0,
           "hitTypeNote": "",
@@ -2870,7 +2870,11 @@ var spellData = [
             {
               "attackIndex": 0,
               "hitIndex": 2
-            }
+            },
+            {
+                "attackIndex": 0,
+                "hitIndex": 3
+              }
           ],
           "note": "First Attack"
         },
@@ -4911,7 +4915,7 @@ var spellData = [
           "attackRating": 253.63322,
           "damageType": 1,
           "attackIndex": 0,
-          "hitIndex": 0,
+          "hitIndex": 1,
           "hitTypeNote": "Shockwave",
           "isCharged": false,
           "hitCount": 1
@@ -4931,7 +4935,7 @@ var spellData = [
           "attackRating": 263.66782,
           "damageType": 1,
           "attackIndex": 1,
-          "hitIndex": 1,
+          "hitIndex": 3,
           "hitTypeNote": "Shockwave",
           "isCharged": false,
           "hitCount": 1
@@ -4941,7 +4945,7 @@ var spellData = [
           "attackRating": 182.00693,
           "damageType": 1,
           "attackIndex": 1,
-          "hitIndex": 1,
+          "hitIndex": 2,
           "hitTypeNote": "Direct Hit",
           "isCharged": false,
           "hitCount": 1
@@ -7622,7 +7626,7 @@ var spellData = [
       "name": "Surge, O Flame!",
       "intelligence": 0,
       "faith": 9,
-      "arcane": 1,
+      "arcane": 0,
       "effectDescription": "Incinerates area before caster with stream of fire",
       "fpCostBase": 1,
       "fpCostExtra": 1,

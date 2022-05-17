@@ -142,8 +142,8 @@
                         <td class="colSelectionInput">
                             <select id="controlSpellType">
                                 <option value="0">All</option>
-                                <option value="1">Staves</option>
-                                <option value="2">Seals</option>
+                                <option value="1">Sorceries</option>
+                                <option value="2">Incantations</option>
                             </select>
                         </td>
                     </tr>
@@ -153,13 +153,10 @@
                             <select type="select" id="controlSorting">
                                 <option value="0">Name</option>
                                 <option value="1">FP Cost</option>
-                                <option value="2">Base AR</option>
-                                <option value="3">Net AR</option>
-                                <option value="4">Net DMG</option>
-                                <option value="5">Base AR:FP</option>
-                                <option value="6">Net AR/FP</option>
-                                <option value="7">Net DMG/FP</option>
-
+                                <option value="2">Net AR</option>
+                                <option value="3">Net DMG</option>
+                                <option value="4">Net AR/FP</option>
+                                <option value="5" selected>Net DMG/FP</option>
                             </select>
                         </td>
                     </tr>
@@ -177,54 +174,13 @@
         </div>
 
         <div id="outputDiv">
-            <table id="spellList">
-                <thead>
-                    <tr>
-                        <th class="displayColName">Name</th>
-                        <th class="displayColType">Type</th>
-                        <th class="displayColDmgType">DMG Type</th>
-                        <th class="displayColType">Hit</th>
-                        <th class="displayColFP">FP</th>
-                        <th class="displayColARDmg">Base AR</th>
-                        <th class="displayColARDmg">Base AR/FP</th>
-                        <th class="displayColHitCount">Hits</th>
-                        <th class="displayColARDmg">Net AR</th>
-                        <th class="displayColARDmg">Net AR/FP</th>
-                        <th class="displayColARDmg">Net DMG</th>
-                        <th class="displayColARDmg">Net DMG/FP</th>
-                        <th class="displayColStat">Int</th>
-                        <th class="displayColStat">Fai</th>
-                        <th class="displayColStat">Arc</th>
-                        <th class="displayColNotes">Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="displayColName">Ancient Dragon Lightning Strike</td>
-                        <td class="displayColType">Sorcery</td>
-                        <td class="displayColDmgType">Magic</td>
-                        <td class="displayColHitType">Any</td>
 
-                        <td class="displayColFP">4</td>
-                        <td class="displayColARDmg">180</td>
-                        <td class="displayColARDmg">45</td>
-                        <td class="displayColHitCount">1</td>
-                        <td class="displayColARDmg">675</td>
-                        <td class="displayColARDmg">168.75</td>
-                        <td class="displayColARDmg">442.26</td>
-                        <td class="displayColARDmg">110.56</td>
-                        <td class="displayColStat">15</td>
-                        <td class="displayColStat">0</td>
-                        <td class="displayColStat">0</td>
-                        <td class="displayColNotes">-</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <div id="footer">
             <p>Thanks to <a href="https://twitter.com/mrtical91">Tical</a> for helping with testing and data collection.</p>
-            <p>Based on the scaling data used by <a href="https://www.reddit.com/r/Eldenring/comments/tbco46/elden_ring_weapon_calculator/">TarnishedSpreadsheet's Weapon Calculator</a>.</p>
+            <p>Based on the scaling data used by <a href="https://www.reddit.com/r/Eldenring/comments/tbco46/elden_ring_weapon_calculator/">TarnishedSpreadsheet's Weapon Calculator</a>, as well as some additional data-mined information they provided.</p>
+            <p>Damage calculation based on <a href="https://www.reddit.com/r/darksouls3/comments/4f8yy8/how_defense_and_absorption_really_work/">information posted by TalentedJuli</a>.</p>
 
             <div id="footerLinks">
                 <span>Comparator tool by <a href="https://jerp.tv">Jerp</a></span>
