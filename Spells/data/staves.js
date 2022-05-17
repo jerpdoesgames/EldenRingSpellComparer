@@ -1202,10 +1202,10 @@ var staves = [
         "magicEffectCategory": 0,
         "schoolMultiplier": 1.0,
         "requirements": {
-            "strength": 7,
+            "strength": 6,
             "dexterity": 0,
             "intelligence": 16,
-            "faith": 14,
+            "faith": 0,
             "arcane": 0
         },
         "scalingEntries": [
@@ -3190,7 +3190,7 @@ var staves = [
         "scalingPath": 15,
         "scalingMapID": 20000,
         "magicEffectCategory": 0,
-        "schoolMultiplier": 1.1,
+        "schoolMultiplier": 1.0,
         "requirements": {
             "strength": 8,
             "dexterity": 0,

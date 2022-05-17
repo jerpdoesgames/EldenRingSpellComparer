@@ -88,7 +88,7 @@ class spellComparer
         return "Unknown";
     }
 
-    combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false)
+    combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false, aSpellBuffMultiplier = 1.0, aFPOverride = 0)
     {
         let displayEntry = {};
         let damageType = 0;
@@ -96,6 +96,7 @@ class spellComparer
         displayEntry.netDamage = 0;
         displayEntry.hitCount = 0;
         displayEntry.netAR = 0;
+        displayEntry.fpCostOverride = aFPOverride;
         let hitNotes = [];
 
         for (let hitIndex = 0; hitIndex < aHitDataList.length; hitIndex++)
@@ -116,10 +117,11 @@ class spellComparer
                     }
 
                     let checkDamageTypeIndex = curHitData.damageType - 1;
-                    displayEntry.netDamage += (curHitData.hitCount * eldenRingDamageCalc.reduceARByAllDefenses(curHitData.attackRating, this.configuration.damageTypes[checkDamageTypeIndex].defense, this.configuration.damageTypes[checkDamageTypeIndex].negation));
+                    let buffedAttackRating = curHitData.attackRating * aSpellBuffMultiplier;
+                    displayEntry.netDamage += (curHitData.hitCount * eldenRingDamageCalc.reduceARByAllDefenses(buffedAttackRating, this.configuration.damageTypes[checkDamageTypeIndex].defense, this.configuration.damageTypes[checkDamageTypeIndex].negation));
 
                     displayEntry.hitCount += curHitData.hitCount;
-                    displayEntry.netAR += (curHitData.attackRating * curHitData.hitCount);
+                    displayEntry.netAR += (buffedAttackRating * curHitData.hitCount);
                     if (curHitData.hitTypeNote != "")
                     {
                         hitNotes.push(curHitData.hitTypeNote);
@@ -345,6 +347,64 @@ class spellComparer
         let scalingStaff = [];
         let scalingSeal = [];
 
+        let selectedStaff = staves[this.configuration.selectedStaff];
+        let selectedSeal = seals[this.configuration.selectedSeal];
+
+        let reqMetStaff = (
+            (this.configuration.stats[STAT_STRENGTH].value >= selectedStaff.requirements.strength || !eldenRingScalingCalc.isToolScaledByStat(selectedStaff, STAT_STRENGTH, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_DEXTERITY].value >= selectedStaff.requirements.dexterity || !eldenRingScalingCalc.isToolScaledByStat(selectedStaff, STAT_DEXTERITY, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_INTELLIGENCE].value >= selectedStaff.requirements.intelligence || !eldenRingScalingCalc.isToolScaledByStat(selectedStaff, STAT_INTELLIGENCE, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_FAITH].value >= selectedStaff.requirements.faith || !eldenRingScalingCalc.isToolScaledByStat(selectedStaff, STAT_FAITH, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_ARCANE].value >= selectedStaff.requirements.arcane || !eldenRingScalingCalc.isToolScaledByStat(selectedStaff, STAT_ARCANE, DAMAGE_MAGIC - 1))
+        );
+
+        let reqMetSeal = (
+
+            (this.configuration.stats[STAT_STRENGTH].value >= selectedSeal.requirements.strength || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_STRENGTH, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_DEXTERITY].value >= selectedSeal.requirements.dexterity || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_DEXTERITY, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_INTELLIGENCE].value >= selectedSeal.requirements.intelligence || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_INTELLIGENCE, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_FAITH].value >= selectedSeal.requirements.faith || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_FAITH, DAMAGE_MAGIC - 1)) &&
+            (this.configuration.stats[STAT_ARCANE].value >= selectedSeal.requirements.arcane || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_ARCANE, DAMAGE_MAGIC - 1))
+        );
+
+        let weaponLevelStaff = 0;
+        let weaponLevelSeal = 0;
+        if (selectedStaff.maxLevel != 0)
+        {
+            weaponLevelStaff = selectedStaff.maxLevel == 25 ? this.configuration.weaponLevels.regular : this.configuration.weaponLevels.somber;
+        }
+
+        if (selectedSeal.maxLevel != 0)
+        {
+            weaponLevelSeal = selectedSeal.maxLevel == 25 ? this.configuration.weaponLevels.regular : this.configuration.weaponLevels.somber;
+        }
+
+        for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
+        {
+
+            if (eldenRingScalingCalc.isToolScaledByStat(selectedStaff, statIndex, DAMAGE_MAGIC - 1))
+            {
+                scalingStaff[statIndex] = eldenRingScalingCalc.calculateToolScalingForStat(selectedStaff, statIndex, DAMAGE_MAGIC - 1, weaponLevelStaff, this.configuration.stats[statIndex].value)
+            }
+            else
+            {
+                scalingStaff[statIndex] = 0;
+            }
+        }
+
+        for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
+        {
+
+            if (eldenRingScalingCalc.isToolScaledByStat(selectedSeal, statIndex, DAMAGE_MAGIC - 1))
+            {
+                scalingSeal[statIndex] = eldenRingScalingCalc.calculateToolScalingForStat(selectedSeal, statIndex, DAMAGE_MAGIC - 1, weaponLevelSeal, this.configuration.stats[statIndex].value)
+            }
+            else
+            {
+                scalingSeal[statIndex] = 0;
+            }
+        }
+
 
         let output = "";
         let outputRows = [];
@@ -364,19 +424,75 @@ class spellComparer
                     let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
                     let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curSpell.arcane);
 
+                    let schoolMultiplier = 1.0;
+                    let useSpelltool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
+
+                    if (curSpell.magicEffectCategory > 0)
+                    {
+                        if (curSpell.magicEffectCategory == useSpelltool.magicEffectCategory)
+                        {
+                            schoolMultiplier *= useSpelltool.schoolMultiplier;
+                        }
+
+                        for (let schoolIndex = 0; schoolIndex < spellSchools.length; schoolIndex++)
+                        {
+                            if (curSpell.magicEffectCategory == spellSchools[schoolIndex].magicEffectCategory)
+                            {
+                                if (spellSchools[schoolIndex].activeCount >= 1)
+                                {
+                                    schoolMultiplier *= spellSchools[schoolIndex].schoolMultiplier;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+
+
                     if (!reqMetIntelligence || !reqMetFaith || !reqMetArcane)
                     {
                         // Maybe show these?
                     }
                     else
                     {
+                        let spellBuffMultiplier = 1.0;
+                        let toolRequirementMet = curSpell.toolType == SPELL_TYPE_SORCERY ? reqMetStaff : reqMetSeal;
+                        let spellBuffEntries = curSpell.toolType == SPELL_TYPE_SORCERY ? scalingStaff : scalingSeal;
+
+                        if (toolRequirementMet)
+                        {
+                            if (curSpell.isWeaponBuff)
+                            {
+
+                                if (curSpell.toolType == SPELL_TYPE_SORCERY)
+                                {
+                                    spellBuffMultiplier += (spellBuffEntries[STAT_INTELLIGENCE] / 100);
+                                }
+                                else
+                                {
+                                    spellBuffMultiplier += (spellBuffEntries[STAT_FAITH] / 100);
+                                }
+                            }
+                            else
+                            {
+                                for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
+                                {
+                                    spellBuffMultiplier += (spellBuffEntries[statIndex] / 100);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            spellBuffMultiplier = 0.6;
+                        }
+
                         let useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
 
                         if (curSpell.hitDisplayData.length == 0)
                         {
                             for (let attackIndex = 0; attackIndex < ATTACK_INDEX_MAX; attackIndex++)
                             {
-                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR);
+                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR, spellBuffMultiplier);
                                 if (curDisplayEntry != null)
                                 {
                                     hitDisplayEntries.push(curDisplayEntry);
@@ -399,7 +515,7 @@ class spellComparer
                                     }
                                 }
 
-                                hitDisplayEntries.push(this.combineHitData(hitEntries, -1, useChargedAR));
+                                hitDisplayEntries.push(this.combineHitData(hitEntries, -1, useChargedAR, spellBuffMultiplier, curDisplayEntry.fpCostOverride));
                             }
                         }
                     }
@@ -407,21 +523,25 @@ class spellComparer
                     let toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
                     for (let displayIndex = 0; displayIndex < hitDisplayEntries.length; displayIndex++)
                     {
+
                         let curDisplayEntry = hitDisplayEntries[displayIndex];
+                        let useFPCost = curDisplayEntry.fpCostOverride > 0 ? curDisplayEntry.fpCostOverride : curSpell.fpCostBase;
                         let damageTypeString = this.getDamageTypeString(curDisplayEntry.damageType);
-                        let netDamageFP = curDisplayEntry.netDamage / curSpell.fpCostBase;
-                        let netARFP = curDisplayEntry.netAR / curSpell.fpCostBase;
+                        let schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
+                        let netDamageFP = schoolBoostedDamage / useFPCost;
+                        let netARFP = curDisplayEntry.netAR / useFPCost;
+
 
                         outputRows.push({
                             name: curSpell.name,
                             type: toolTypestring,
                             damageType: damageTypeString,
                             hitNote: curDisplayEntry.hitNote,
-                            fpCost: curSpell.fpCostBase,
+                            fpCost: useFPCost,
                             hitCount: curDisplayEntry.hitCount,
                             netAR: curDisplayEntry.netAR,
                             netARFP: netARFP,
-                            netDamage: curDisplayEntry.netDamage,
+                            netDamage: schoolBoostedDamage,
                             netDamageFP: netDamageFP,
                             intelligence: curSpell.intelligence,
                             faith: curSpell.faith,

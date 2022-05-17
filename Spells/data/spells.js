@@ -1077,6 +1077,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 13,
+      "isWeaponBuff": true,
       "hitData": [],
       "hitDisplayData": []
     },
@@ -2187,16 +2188,6 @@ var spellData = [
       "hitData": [
         {
           "name": "Night Shard",
-          "attackRating": 110.625,
-          "damageType": 2,
-          "attackIndex": 0,
-          "hitIndex": 0,
-          "hitTypeNote": "",
-          "isCharged": false,
-          "hitCount": 1
-        },
-        {
-          "name": "Night Shard",
           "attackRating": 111.21212,
           "damageType": 2,
           "attackIndex": 0,
@@ -2674,6 +2665,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Scholar\u0027s Armament",
@@ -3551,6 +3543,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 12,
+      "isWeaponBuff": true,
       "hitData": [],
       "hitDisplayData": []
     },
@@ -4275,6 +4268,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 20,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Black Flame Blade",
@@ -4514,6 +4508,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Bloodflame Blade",
@@ -5278,6 +5273,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 22,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Electrify Armament",
@@ -7055,6 +7051,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 24,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Order\u0027s Blade",
@@ -7209,6 +7206,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
+      "isWeaponBuff": true,
       "hitData": [],
       "hitDisplayData": []
     },
@@ -7311,7 +7309,7 @@ var spellData = [
           "attackIndex": 0,
           "hitIndex": 0,
           "hitTypeNote": "",
-          "isCharged": false,
+          "isCharged": true,
           "hitCount": 1
         }
       ],
@@ -7996,6 +7994,7 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 22,
+      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Vyke\u0027s Dragonbolt",

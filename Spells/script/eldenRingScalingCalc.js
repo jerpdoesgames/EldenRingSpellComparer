@@ -39,13 +39,12 @@ class eldenRingScalingCalc
 		return aStatValue >= toolReq;
     }
 
-    static calculateToolScalingForStat(aTool, aStatIndex, aDamageTypeIndex, aWeaponLevel)
+    static calculateToolScalingForStat(aTool, aStatIndex, aDamageTypeIndex, aWeaponLevel, aStatValue)
     {
-        let statIndex = aStatValue - 1;
         let scalingMap = this.getScalingMapByID(aTool.scalingMapID);
         if (scalingMap != null && scalingMap[this.damageTypeNames[aDamageTypeIndex]][this.statNames[aStatIndex]])
         {
-            let calcCorrect = scalingPaths[aTool.scalingPath][statIndex];
+            let calcCorrect = scalingPaths[aTool.scalingPath][aStatValue - 1];
             let statScaling = aTool.scalingEntries[aWeaponLevel][this.statNames[aStatIndex]]
 
             if (statScaling == 0)
