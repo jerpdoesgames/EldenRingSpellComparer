@@ -339,6 +339,10 @@ class spellComparer
         return b.fpCost - a.fpCost;
     }
 
+    checkFromBool(aInput)
+    {
+        return aInput ? "&#10003;" : "&nbsp;";
+    }
 
     updateDisplay()
     {
@@ -555,7 +559,6 @@ class spellComparer
                         let netDamageFP = schoolBoostedDamage / useFPCost;
                         let netARFP = curDisplayEntry.netAR / useFPCost;
 
-
                         outputRows.push({
                             name: curSpell.name,
                             type: toolTypestring,
@@ -570,6 +573,12 @@ class spellComparer
                             intelligence: curSpell.intelligence,
                             faith: curSpell.faith,
                             arcane: curSpell.arcane,
+                            allowCharge: curSpell.allowCharge,
+                            allowChain: curSpell.allowChain,
+                            allowFollowup: curSpell.allowFollowup,
+                            allowChannel: curSpell.allowChannel,
+                            allowMovement: curSpell.allowMovement,
+                            allowHorseback: curSpell.allowHorseback
                         });
                     }
                 }
@@ -622,6 +631,12 @@ class spellComparer
                     <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netARFP)}</td>
                     <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamage)}</td>
                     <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamageFP)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowCharge)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowChain)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowFollowup)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowChannel)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowMovement)}</td>
+                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowHorseback)}</td>
                     <td class="displayColStat${reqClassIntelligence}">${curRow.intelligence}</td>
                     <td class="displayColStat${reqClassFaith}">${curRow.faith}</td>
                     <td class="displayColStat${reqClassArcane}">${curRow.arcane}</td>
@@ -643,6 +658,12 @@ class spellComparer
                     <th class="displayColARDmg">Net AR/FP</th>
                     <th class="displayColARDmg">Net DMG</th>
                     <th class="displayColARDmg">Net DMG/FP</th>
+                    <th class="displayColType">Charge?</th>
+                    <th class="displayColType">Chain?</th>
+                    <th class="displayColType">Followup?</th>
+                    <th class="displayColType">Channel?</th>
+                    <th class="displayColType">Movement?</th>
+                    <th class="displayColType">Horseback?</th>
                     <th class="displayColStat">Int</th>
                     <th class="displayColStat">Fai</th>
                     <th class="displayColStat">Arc</th>
