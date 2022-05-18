@@ -88,15 +88,16 @@ class spellComparer
         return "Unknown";
     }
 
-    combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false, aSpellBuffMultiplier = 1.0, aFPOverride = 0)
+    combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false, aSpellBuffMultiplier = 1.0, aFPOverride = 0, aShowAttackIndex = false)
     {
         let displayEntry = {};
-        let damageType = 0;
         let foundValidHits = false;
         displayEntry.netDamage = 0;
         displayEntry.hitCount = 0;
         displayEntry.netAR = 0;
         displayEntry.fpCostOverride = aFPOverride;
+        let arBreakdownList = [];
+
         let hitNotes = [];
 
         for (let hitIndex = 0; hitIndex < aHitDataList.length; hitIndex++)
@@ -105,34 +106,49 @@ class spellComparer
 
             if ((aAttackIndex == -1 || curHitData.attackIndex == aAttackIndex) && curHitData.isCharged == aIsCharged)
             {
-                if (damageType != DAMAGE_MIXED && curHitData.damageType > 0)
+                if (displayEntry.damageType == null)
                 {
-                    if (damageType > 0 && curHitData.damageType != damageType)
-                    {
-                        damageType = DAMAGE_MIXED;
-                    }
+                    displayEntry.damageType = curHitData.damageType;
+                }
+                else if (displayEntry.damageType != curHitData.damageType)
+                {
+                    displayEntry.damageType = DAMAGE_MIXED;
+                }
+
+                let checkDamageTypeIndex = curHitData.damageType - 1;
+                let buffedAttackRating = curHitData.attackRating * aSpellBuffMultiplier;
+                displayEntry.netDamage += (curHitData.hitCount * eldenRingDamageCalc.reduceARByAllDefenses(buffedAttackRating, this.configuration.damageTypes[checkDamageTypeIndex].defense, this.configuration.damageTypes[checkDamageTypeIndex].negation));
+
+                displayEntry.hitCount += curHitData.hitCount;
+                displayEntry.netAR += (buffedAttackRating * curHitData.hitCount);
+
+                let arDescriptionString = this.formatDamageForDisplay(curHitData.attackRating);
+
+                if (curHitData.hitTypeNote != "")
+                {
+                    arDescriptionString += ` (${curHitData.hitTypeNote})`;
+
+                    hitNotes.push(curHitData.hitTypeNote);
+                }
+                if (curHitData.hitCount >= 2)
+                {
+                    arDescriptionString += ` x${curHitData.hitCount}`;
+                }
+                foundValidHits = true;
+                arBreakdownList.push(arDescriptionString);
+
+                if (aShowAttackIndex && curHitData.attackIndex >= 0)
+                {
+                    if (displayEntry.attackIndex == null)
+                        displayEntry.attackIndex = curHitData.attackIndex;
                     else
-                    {
-                        damageType = curHitData.damageType;
-                    }
-
-                    let checkDamageTypeIndex = curHitData.damageType - 1;
-                    let buffedAttackRating = curHitData.attackRating * aSpellBuffMultiplier;
-                    displayEntry.netDamage += (curHitData.hitCount * eldenRingDamageCalc.reduceARByAllDefenses(buffedAttackRating, this.configuration.damageTypes[checkDamageTypeIndex].defense, this.configuration.damageTypes[checkDamageTypeIndex].negation));
-
-                    displayEntry.hitCount += curHitData.hitCount;
-                    displayEntry.netAR += (buffedAttackRating * curHitData.hitCount);
-                    if (curHitData.hitTypeNote != "")
-                    {
-                        hitNotes.push(curHitData.hitTypeNote);
-                    }
-                    foundValidHits = true;
+                        displayEntry.attackIndex = Math.max(displayEntry.attackIndex, curHitData.attackIndex);
                 }
             }
 
         }
 
-        displayEntry.damageType = damageType;
+        displayEntry.arBreakdown = arBreakdownList.join(", ");
         displayEntry.hitNote = hitNotes.join(", ");
 
         return foundValidHits ? displayEntry : null;
@@ -363,7 +379,6 @@ class spellComparer
         );
 
         let reqMetSeal = (
-
             (this.configuration.stats[STAT_STRENGTH].value >= selectedSeal.requirements.strength || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_STRENGTH, DAMAGE_MAGIC - 1)) &&
             (this.configuration.stats[STAT_DEXTERITY].value >= selectedSeal.requirements.dexterity || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_DEXTERITY, DAMAGE_MAGIC - 1)) &&
             (this.configuration.stats[STAT_INTELLIGENCE].value >= selectedSeal.requirements.intelligence || !eldenRingScalingCalc.isToolScaledByStat(selectedSeal, STAT_INTELLIGENCE, DAMAGE_MAGIC - 1)) &&
@@ -443,12 +458,12 @@ class spellComparer
         for (let spellIndex = 0; spellIndex < spellData.length; spellIndex++)
         {
             let curSpell = spellData[spellIndex];
-            let curTool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
 
             if (this.configuration.filter == SPELL_TYPE_ALL || this.configuration.filter == curSpell.toolType)
             {
                 if (curSpell.hitData.length > 0)
                 {
+                    let curTool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
                     let hitDisplayEntries = [];
                     let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curSpell.intelligence);
                     let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
@@ -515,11 +530,17 @@ class spellComparer
 
                         let useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
 
+                        let maxAttackIndex = -1;
+                        for (let i = 0; i < curSpell.hitData.length; i++)
+                        {
+                            maxAttackIndex = Math.max(maxAttackIndex, curSpell.hitData[i].attackIndex);
+                        }
+
                         if (curSpell.hitDisplayData.length == 0)
                         {
-                            for (let attackIndex = 0; attackIndex < ATTACK_INDEX_MAX; attackIndex++)
+                            for (let attackIndex = 0; attackIndex <= ATTACK_INDEX_MAX; attackIndex++)
                             {
-                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR, spellBuffMultiplier);
+                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR, spellBuffMultiplier, -1, (maxAttackIndex > 0));
                                 if (curDisplayEntry != null)
                                 {
                                     hitDisplayEntries.push(curDisplayEntry);
@@ -542,7 +563,13 @@ class spellComparer
                                     }
                                 }
 
-                                hitDisplayEntries.push(this.combineHitData(hitEntries, -1, useChargedAR, spellBuffMultiplier, curDisplayEntry.fpCostOverride));
+                                let dataToAdd = this.combineHitData(hitEntries, -1, useChargedAR, spellBuffMultiplier, curDisplayEntry.fpCostOverride, (maxAttackIndex > 0));
+
+                                if (curDisplayEntry.note != null && curDisplayEntry.note != "")
+                                {
+                                    dataToAdd.hitNote = curDisplayEntry.note;
+                                }
+                                hitDisplayEntries.push(dataToAdd);
                             }
                         }
                     }
@@ -558,9 +585,10 @@ class spellComparer
                         let schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
                         let netDamageFP = schoolBoostedDamage / useFPCost;
                         let netARFP = curDisplayEntry.netAR / useFPCost;
+                        let attackIndexString = (curDisplayEntry.attackIndex != null && curDisplayEntry.attackIndex >= 0) ? ` (${curDisplayEntry.attackIndex + 1})` : "";
 
                         outputRows.push({
-                            name: curSpell.name,
+                            name: curSpell.name + attackIndexString,
                             type: toolTypestring,
                             damageType: damageTypeString,
                             hitNote: curDisplayEntry.hitNote,
@@ -578,7 +606,8 @@ class spellComparer
                             allowFollowup: curSpell.allowFollowup,
                             allowChannel: curSpell.allowChannel,
                             allowMovement: curSpell.allowMovement,
-                            allowHorseback: curSpell.allowHorseback
+                            allowHorseback: curSpell.allowHorseback,
+                            arBreakdown: curDisplayEntry.arBreakdown
                         });
                     }
                 }
@@ -640,6 +669,7 @@ class spellComparer
                     <td class="displayColStat${reqClassIntelligence}">${curRow.intelligence}</td>
                     <td class="displayColStat${reqClassFaith}">${curRow.faith}</td>
                     <td class="displayColStat${reqClassArcane}">${curRow.arcane}</td>
+                    <td class="displayColHitType leftAlign">${curRow.arBreakdown}</td>
                 </tr>
             `;
         }
@@ -651,7 +681,7 @@ class spellComparer
                     <th class="displayColName">Name</th>
                     <th class="displayColType">Type</th>
                     <th class="displayColDmgType">DMG Type</th>
-                    <th class="displayColType">Hit</th>
+                    <th class="displayColType">Note</th>
                     <th class="displayColFP">FP</th>
                     <th class="displayColHitCount">Hits</th>
                     <th class="displayColARDmg">Net AR</th>
@@ -667,6 +697,7 @@ class spellComparer
                     <th class="displayColStat">Int</th>
                     <th class="displayColStat">Fai</th>
                     <th class="displayColStat">Arc</th>
+                    <th class="displayColStat leftAlign">Base AR Breakdown</th>
                 </tr>
             </thead>
             <tbody>

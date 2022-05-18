@@ -82,7 +82,7 @@
     display: inline;
 }
 
-#statTableDef thead tr td {
+#statTableDef thead tr th {
     text-align: center;
 }
 
@@ -93,6 +93,10 @@
 .displayColName {
     text-align: left;
     white-space: nowrap;
+}
+
+.leftAlign {
+    text-align: left;
 }
 
 /*
@@ -133,6 +137,10 @@ Table jank =======================
 
 #spellList tbody tr:nth-child(even) td {
     background-color: #35332a;
+}
+
+#spellList tbody tr td {
+    white-space: nowrap;
 }
 
 /* ================ */

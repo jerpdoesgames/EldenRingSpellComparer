@@ -46,7 +46,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 38,
@@ -85,7 +86,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 66,
@@ -134,7 +136,8 @@ var spellData = [
           "hitCount": 9
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 64,
@@ -173,7 +176,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 63,
@@ -232,7 +236,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 11,
@@ -281,7 +286,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 33,
@@ -320,7 +326,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 25,
@@ -359,7 +366,8 @@ var spellData = [
           "hitCount": 9
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 34,
@@ -408,7 +416,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 37,
@@ -447,7 +456,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 32,
@@ -486,7 +496,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 57,
@@ -535,7 +546,8 @@ var spellData = [
           "hitCount": 9
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 4,
@@ -584,7 +596,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 20,
@@ -671,11 +684,16 @@ var spellData = [
             {
               "attackIndex": 0,
               "hitIndex": 2
+            },
+            {
+              "attackIndex": 0,
+              "hitIndex": 3
             }
           ],
           "note": "Initial burst / not sustained"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 9,
@@ -714,7 +732,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 10,
@@ -763,7 +782,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 55,
@@ -802,7 +822,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 54,
@@ -841,7 +862,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 44,
@@ -869,7 +891,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 6,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 67,
@@ -945,7 +968,8 @@ var spellData = [
           ],
           "note": "Fire"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 68,
@@ -973,7 +997,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 10,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 22,
@@ -1022,7 +1047,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 50,
@@ -1050,7 +1076,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 13,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 51,
@@ -1077,9 +1104,9 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 13,
-      "isWeaponBuff": true,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 12,
@@ -1128,34 +1155,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": [
-        {
-          "name": "Gavel of Haima",
-          "displayIndex": 0,
-          "fpCostOverride": 0,
-          "showARBreakdown": false,
-          "componentHits": [
-            {
-              "attackIndex": 0,
-              "hitIndex": 0
-            }
-          ],
-          "note": "First Swing"
-        },
-        {
-          "name": "Gavel of Haima",
-          "displayIndex": 1,
-          "fpCostOverride": 0,
-          "showARBreakdown": false,
-          "componentHits": [
-            {
-              "attackIndex": 1,
-              "hitIndex": 1
-            }
-          ],
-          "note": "Second Swing"
-        }
-      ]
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 47,
@@ -1194,7 +1195,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 24,
@@ -1233,7 +1235,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 8,
@@ -1272,7 +1275,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 3,
@@ -1321,7 +1325,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 49,
@@ -1360,7 +1365,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 0,
@@ -1399,7 +1405,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 6,
@@ -1488,7 +1495,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 56,
@@ -1537,7 +1545,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 2,
@@ -1576,7 +1585,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 62,
@@ -1625,7 +1635,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 26,
@@ -1664,7 +1675,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 28,
@@ -1713,7 +1725,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 29,
@@ -1762,7 +1775,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 36,
@@ -1790,7 +1804,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 27,
@@ -1829,7 +1844,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 23,
@@ -1878,7 +1894,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 45,
@@ -1912,7 +1929,7 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Impact",
           "isCharged": false,
           "hitCount": 1
         },
@@ -1922,7 +1939,7 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Magma",
           "isCharged": false,
           "hitCount": 2
         },
@@ -1932,7 +1949,7 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Impact",
           "isCharged": true,
           "hitCount": 1
         },
@@ -1942,12 +1959,13 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Magma",
           "isCharged": true,
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 59,
@@ -1981,7 +1999,7 @@ var spellData = [
           "damageType": 1,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Physical",
           "isCharged": false,
           "hitCount": 3
         },
@@ -1991,7 +2009,7 @@ var spellData = [
           "damageType": 2,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Magic",
           "isCharged": false,
           "hitCount": 3
         }
@@ -2014,7 +2032,8 @@ var spellData = [
           ],
           "note": "Physical and Magic AR"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 60,
@@ -2048,9 +2067,9 @@ var spellData = [
           "damageType": 1,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Physical",
           "isCharged": false,
-          "hitCount": 3
+          "hitCount": 5
         },
         {
           "name": "Meteorite of Astel",
@@ -2058,9 +2077,9 @@ var spellData = [
           "damageType": 2,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Magic",
           "isCharged": false,
-          "hitCount": 3
+          "hitCount": 5
         }
       ],
       "hitDisplayData": [
@@ -2081,7 +2100,8 @@ var spellData = [
           ],
           "note": "Physical and Magic AR"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 40,
@@ -2130,7 +2150,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 41,
@@ -2158,7 +2179,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 39,
@@ -2197,7 +2219,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 61,
@@ -2246,7 +2269,8 @@ var spellData = [
           "hitCount": 9
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 65,
@@ -2295,7 +2319,8 @@ var spellData = [
           "hitCount": 6
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 31,
@@ -2334,7 +2359,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 30,
@@ -2373,7 +2399,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 14,
@@ -2440,7 +2467,8 @@ var spellData = [
           ],
           "note": "Combined"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 58,
@@ -2479,7 +2507,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 46,
@@ -2599,7 +2628,8 @@ var spellData = [
           ],
           "note": "Explosion"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 48,
@@ -2638,7 +2668,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 15,
@@ -2665,7 +2696,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Scholar\u0027s Armament",
@@ -2678,7 +2708,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 16,
@@ -2706,7 +2737,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 5,
@@ -2755,7 +2787,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 13,
@@ -2866,7 +2899,7 @@ var spellData = [
             {
                 "attackIndex": 0,
                 "hitIndex": 3
-              }
+            }
           ],
           "note": "First Attack"
         },
@@ -2887,7 +2920,8 @@ var spellData = [
           ],
           "note": "Second Attack"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 53,
@@ -2936,7 +2970,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 7,
@@ -3085,7 +3120,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 17,
@@ -3113,7 +3149,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 21,
@@ -3382,7 +3419,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 1,
@@ -3421,7 +3459,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 18,
@@ -3449,7 +3488,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 19,
@@ -3477,7 +3517,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 69,
@@ -3516,7 +3557,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 42,
@@ -3543,9 +3585,9 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 12,
-      "isWeaponBuff": true,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 43,
@@ -3573,7 +3615,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 12,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 52,
@@ -3622,7 +3665,8 @@ var spellData = [
           "hitCount": 8
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 88,
@@ -3661,7 +3705,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 40,
@@ -3737,7 +3782,8 @@ var spellData = [
           ],
           "note": ""
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 41,
@@ -3786,7 +3832,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 23,
@@ -3813,8 +3860,20 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 28,
-      "hitData": [],
-      "hitDisplayData": []
+      "hitData": [
+        {
+          "name": "Aspects of the Crucible: Breath",
+          "attackRating": 98.36512,
+          "damageType": 3,
+          "attackIndex": 0,
+          "hitIndex": 0,
+          "hitTypeNote": "",
+          "isCharged": false,
+          "hitCount": 2
+        }
+      ],
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 25,
@@ -3841,8 +3900,74 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 28,
-      "hitData": [],
-      "hitDisplayData": []
+      "hitData": [
+        {
+          "name": "Aspects of the Crucible: Tail",
+          "attackRating": 202.34741,
+          "damageType": 1,
+          "attackIndex": 0,
+          "hitIndex": 0,
+          "hitTypeNote": "First Swing",
+          "isCharged": false,
+          "hitCount": 1
+        },
+        {
+          "name": "Aspects of the Crucible: Tail",
+          "attackRating": 274.1784,
+          "damageType": 1,
+          "attackIndex": 0,
+          "hitIndex": 1,
+          "hitTypeNote": "Second Swing",
+          "isCharged": false,
+          "hitCount": 1
+        }
+      ],
+      "hitDisplayData": [
+        {
+          "name": "Aspects of the Crucible: Tail",
+          "displayIndex": 0,
+          "fpCostOverride": 0,
+          "showARBreakdown": false,
+          "componentHits": [
+            {
+              "attackIndex": 0,
+              "hitIndex": 0
+            }
+          ],
+          "note": "First Swing"
+        },
+        {
+          "name": "Aspects of the Crucible: Tail",
+          "displayIndex": 1,
+          "fpCostOverride": 0,
+          "showARBreakdown": false,
+          "componentHits": [
+            {
+              "attackIndex": 0,
+              "hitIndex": 1
+            }
+          ],
+          "note": "Second Swing"
+        },
+        {
+          "name": "Aspects of the Crucible: Tail",
+          "displayIndex": 2,
+          "fpCostOverride": 0,
+          "showARBreakdown": true,
+          "componentHits": [
+            {
+              "attackIndex": 0,
+              "hitIndex": 0
+            },
+            {
+              "attackIndex": 0,
+              "hitIndex": 1
+            }
+          ],
+          "note": "Combined"
+        }
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 24,
@@ -3869,8 +3994,30 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 28,
-      "hitData": [],
-      "hitDisplayData": []
+      "hitData": [
+        {
+          "name": "Aspects of the Crucible: Horns",
+          "attackRating": 277.92917,
+          "damageType": 1,
+          "attackIndex": 0,
+          "hitIndex": 0,
+          "hitTypeNote": "",
+          "isCharged": false,
+          "hitCount": 1
+        },
+        {
+          "name": "Aspects of the Crucible: Horns",
+          "attackRating": 327.7929,
+          "damageType": 1,
+          "attackIndex": 0,
+          "hitIndex": 0,
+          "hitTypeNote": "",
+          "isCharged": true,
+          "hitCount": 1
+        }
+      ],
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 14,
@@ -3898,7 +4045,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 16,
@@ -3926,7 +4074,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 68,
@@ -3975,7 +4124,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 72,
@@ -4003,7 +4153,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 23,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 70,
@@ -4042,7 +4193,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 73,
@@ -4070,7 +4222,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 23,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 27,
@@ -4192,7 +4345,8 @@ var spellData = [
           ],
           "note": "Second Attack - Projectile"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 62,
@@ -4241,7 +4395,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 65,
@@ -4268,7 +4423,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 20,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Black Flame Blade",
@@ -4281,7 +4435,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 64,
@@ -4330,7 +4485,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 66,
@@ -4358,7 +4514,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 20,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 22,
@@ -4386,7 +4543,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 21,
@@ -4414,7 +4572,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 76,
@@ -4481,7 +4640,8 @@ var spellData = [
           ],
           "note": "Includes Fire"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 77,
@@ -4508,7 +4668,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Bloodflame Blade",
@@ -4521,7 +4680,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 75,
@@ -4560,7 +4720,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 96,
@@ -4599,7 +4760,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 57,
@@ -4638,7 +4800,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 49,
@@ -4677,7 +4840,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 4,
@@ -4705,7 +4869,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 13,
@@ -4733,7 +4898,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 45,
@@ -4782,7 +4948,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 28,
@@ -4821,7 +4988,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 9,
@@ -4849,7 +5017,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 47,
@@ -4877,7 +5046,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 22,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 98,
@@ -4999,7 +5169,8 @@ var spellData = [
           ],
           "note": "Second Attack - Direct Hit"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 87,
@@ -5038,7 +5209,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 95,
@@ -5077,7 +5249,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 99,
@@ -5116,7 +5289,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 94,
@@ -5155,7 +5329,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 26,
@@ -5242,11 +5417,16 @@ var spellData = [
             {
               "attackIndex": 0,
               "hitIndex": 2
+            },
+            {
+                "attackIndex": 0,
+                "hitIndex": 3
             }
           ],
           "note": ""
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 46,
@@ -5273,7 +5453,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 22,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Electrify Armament",
@@ -5286,7 +5465,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 20,
@@ -5314,7 +5494,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 61,
@@ -5410,7 +5591,8 @@ var spellData = [
           ],
           "note": "Fire - assumes full duration"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 7,
@@ -5438,7 +5620,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 51,
@@ -5487,7 +5670,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 54,
@@ -5563,7 +5747,8 @@ var spellData = [
           ],
           "note": "Fire"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 58,
@@ -5591,7 +5776,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 21,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 53,
@@ -5640,7 +5826,8 @@ var spellData = [
           "hitCount": 3
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 60,
@@ -5668,7 +5855,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 21,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 59,
@@ -5696,7 +5884,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 21,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 43,
@@ -5864,7 +6053,8 @@ var spellData = [
           ],
           "note": "Spear 2 - Bolt"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 84,
@@ -5913,7 +6103,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 44,
@@ -5989,7 +6180,8 @@ var spellData = [
           ],
           "note": "Lightning"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 52,
@@ -6038,7 +6230,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 91,
@@ -6077,7 +6270,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 17,
@@ -6105,7 +6299,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 15,
@@ -6133,7 +6328,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 2,
@@ -6161,7 +6357,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 100,
@@ -6200,7 +6397,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 69,
@@ -6239,7 +6437,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 1,
@@ -6267,7 +6466,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 39,
@@ -6306,7 +6506,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 85,
@@ -6345,7 +6546,8 @@ var spellData = [
           "hitCount": 10
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 34,
@@ -6373,7 +6575,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 24,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 86,
@@ -6412,7 +6615,8 @@ var spellData = [
           "hitCount": 8
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 42,
@@ -6446,7 +6650,7 @@ var spellData = [
           "damageType": 4,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Impact",
           "isCharged": false,
           "hitCount": 1
         },
@@ -6456,7 +6660,7 @@ var spellData = [
           "damageType": 4,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Bolt",
           "isCharged": false,
           "hitCount": 1
         }
@@ -6488,7 +6692,8 @@ var spellData = [
           ],
           "note": "Bolt"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 35,
@@ -6527,7 +6732,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 36,
@@ -6555,7 +6761,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 24,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 8,
@@ -6583,7 +6790,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 37,
@@ -6632,7 +6840,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 38,
@@ -6671,7 +6880,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 31,
@@ -6710,7 +6920,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 5,
@@ -6738,7 +6949,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 10,
@@ -6766,7 +6978,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 3,
@@ -6794,7 +7007,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 6,
@@ -6822,7 +7036,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 89,
@@ -6856,7 +7071,7 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 0,
-          "hitTypeNote": "",
+          "hitTypeNote": "Explosion",
           "isCharged": false,
           "hitCount": 1
         },
@@ -6866,7 +7081,7 @@ var spellData = [
           "damageType": 3,
           "attackIndex": 0,
           "hitIndex": 1,
-          "hitTypeNote": "",
+          "hitTypeNote": "Magma",
           "isCharged": false,
           "hitCount": 2
         }
@@ -6898,7 +7113,8 @@ var spellData = [
           ],
           "note": "Magma"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 67,
@@ -6947,7 +7163,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 50,
@@ -6996,7 +7213,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 32,
@@ -7024,7 +7242,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 24,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 33,
@@ -7051,7 +7270,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 24,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Order\u0027s Blade",
@@ -7064,7 +7282,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 80,
@@ -7103,7 +7322,8 @@ var spellData = [
           "hitCount": 6
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 97,
@@ -7179,7 +7399,8 @@ var spellData = [
           ],
           "note": "Laser"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 79,
@@ -7206,9 +7427,9 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
-      "isWeaponBuff": true,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 78,
@@ -7236,7 +7457,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 18,
@@ -7264,7 +7486,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 30,
@@ -7313,7 +7536,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 11,
@@ -7341,7 +7565,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 93,
@@ -7380,7 +7605,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 81,
@@ -7461,7 +7687,8 @@ var spellData = [
           ],
           "note": "Full Hit"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 63,
@@ -7510,7 +7737,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 12,
@@ -7538,7 +7766,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 92,
@@ -7577,7 +7806,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 71,
@@ -7616,7 +7846,8 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 55,
@@ -7669,7 +7900,8 @@ var spellData = [
           ],
           "note": "Costs around 4fp/tick"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 74,
@@ -7736,7 +7968,8 @@ var spellData = [
           ],
           "note": ""
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 82,
@@ -7785,7 +8018,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 90,
@@ -7861,7 +8095,8 @@ var spellData = [
           ],
           "note": "Magma"
         }
-      ]
+      ],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 29,
@@ -7900,7 +8135,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 83,
@@ -7939,7 +8175,8 @@ var spellData = [
           "hitCount": 2
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 0,
@@ -7967,7 +8204,8 @@ var spellData = [
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 0,
       "hitData": [],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 48,
@@ -7994,7 +8232,6 @@ var spellData = [
       "duration": 0,
       "hasWeaponSkillVariant": false,
       "magicEffectCategory": 22,
-      "isWeaponBuff": true,
       "hitData": [
         {
           "name": "Vyke\u0027s Dragonbolt",
@@ -8007,7 +8244,8 @@ var spellData = [
           "hitCount": 5
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": true
     },
     {
       "defaultSortIndex": 56,
@@ -8056,7 +8294,8 @@ var spellData = [
           "hitCount": 4
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     },
     {
       "defaultSortIndex": 19,
@@ -8105,6 +8344,7 @@ var spellData = [
           "hitCount": 1
         }
       ],
-      "hitDisplayData": []
+      "hitDisplayData": [],
+      "isWeaponBuff": false
     }
-];
+  ]
