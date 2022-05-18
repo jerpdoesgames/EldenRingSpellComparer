@@ -53,15 +53,15 @@ class spellComparer
             },
             {
                 name: "intelligence",
-                value: 10
+                value: 80
             },
             {
                 name: "faith",
-                value: 10
+                value: 50
             },
             {
                 name: "arcane",
-                value: 10
+                value: 18
             }
         ]
     };
