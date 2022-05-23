@@ -1,4 +1,4 @@
-scalingPaths = {
+const scalingPaths = {
     0: [
         0,
         0.8344518907,
