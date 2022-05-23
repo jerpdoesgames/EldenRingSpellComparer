@@ -2,6 +2,7 @@
     // Enable type-checking for JavaScript
     "compilerOptions": {
       "checkJs": true,
-      "lib": ["DOM", "ES2022"]
+      "lib": ["DOM", "ES2022"],
+      "target": "ES6"
     },
   }

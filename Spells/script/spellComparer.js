@@ -1,70 +1,12 @@
-const SORT_NAME = 0;
-const SORT_FP_COST = 1;
-const SORT_AR_NET = 2;
-const SORT_DAMAGE_NET = 3;
-const SORT_AR_FP_NET = 4;
-const SORT_DMG_FP = 5;
-
-const ATTACK_INDEX_MAX = 2;
+const {
+    SORT_NAME, SORT_FP_COST, SORT_AR_NET, SORT_DAMAGE_NET, SORT_AR_FP_NET, SORT_DMG_FP,
+    ATTACK_INDEX_MAX
+} = ELDEN_RING_TOOLS_CONSTANTS.SPELL_COMPARER;
 
 class spellComparer
 {
     updateOnChange = true;  // Disabled temporarily when modifying input fields without user intervention
-    configuration = {
-        selectedStaff: 0,
-        selectedSeal: 0,
-        showCharged : false,
-        weaponLevels : {
-            regular: 25,
-            somber: 10
-        },
-        damageTypes : [
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            }
-        ],
-        sort : SORT_DMG_FP,
-        filter : SPELL_TYPE_ALL,
-        stats: [
-            {
-                name: "strength",
-                value: 10
-            },
-            {
-                name: "dexterity",
-                value: 10
-            },
-            {
-                name: "intelligence",
-                value: 80
-            },
-            {
-                name: "faith",
-                value: 50
-            },
-            {
-                name: "arcane",
-                value: 18
-            }
-        ]
-    };
+    configuration = PlayerConfigStorage.getInstance().getConfig();
 
     getDamageTypeString(aDamageType)
     {
@@ -177,8 +119,9 @@ class spellComparer
 
     statControlInput(aEvent)
     {
-        let statIndex = parseInt(aEvent.target.id.substring(11));
-        this.configuration.stats[statIndex].value = parseInt(this.statControls[statIndex].value);
+        let statName = aEvent.target.id
+        let stat = this.configuration.stats.find(it => it.name == statName);
+        stat.value = parseInt(aEvent.target.value);
         this.updateDisplay();
     }
 
@@ -319,6 +262,9 @@ class spellComparer
     updateDisplay()
     {
         this.updateSchoolChecks();
+
+        // Call setConfig to persist current settings in localStorage (as a side effect)
+        PlayerConfigStorage.getInstance().setConfig(this.configuration);
 
         let scalingStaff = [];
         let scalingSeal = [];
@@ -652,57 +598,92 @@ class spellComparer
     initialize()
     {
         this.contentElement = document.getElementById("outputDiv");
-        this.controlSorting = document.getElementById("controlSorting");
-        this.controlSpellType = document.getElementById("controlSpellType");
-        this.controlStaff = document.getElementById("controlStaff");
-        this.controlSeal = document.getElementById("controlSeal");
+        
+        this.initializeStaffAndSealControls();
+        this.initializeDefenseAndNegation();
+        this.initializeMainStats();
+        this.initializeUpgrades();
+        this.initializeSpellTypeAndSorting();
+        this.initializeStaffAndSealScaling();
+        this.initializeSpellSchools();
 
-        this.controlStaff.addEventListener("change", this.toolStaffChange.bind(this));
-        this.controlSeal.addEventListener("change", this.toolSealChange.bind(this));
+        this.populateStaffList();
+        this.populateSealList();
+        this.updateDisplay();
+    }
 
-        this.defenseControls = [];
-        for (let i = 0; i < this.configuration.damageTypes.length; i++)
-        {
-            this.defenseControls[i] = document.getElementById("statControlDefense"+i);
-            this.defenseControls[i].addEventListener("change", this.defenseControlInput.bind(this));
-        }
-
-        this.negationControls = [];
-        for (let i = 0; i < this.configuration.damageTypes.length; i++)
-        {
-            this.negationControls[i] = document.getElementById("statControlNegation"+i);
-            this.negationControls[i].addEventListener("change", this.negationControlInput.bind(this));
-        }
-
-        this.statControls = [];
-        for (let i = 0; i < this.configuration.stats.length; i++)
-        {
-            this.statControls[i] = document.getElementById("statControl"+i);
-            this.statControls[i].addEventListener("change", this.statControlInput.bind(this));
-        }
-
-        document.getElementById("upgradeControl0").addEventListener("change", this.upgradeControlInput.bind(this));
-        document.getElementById("upgradeControl1").addEventListener("change", this.upgradeControlInput.bind(this));
-
-        document.getElementById("controlSpellType").addEventListener("change", this.toolFilterChange.bind(this));
-        document.getElementById("controlSorting").addEventListener("change", this.onSortChange.bind(this));
-
+    initializeStaffAndSealScaling()
+    {
         this.scalingDisplayStaff = document.getElementById("scalingStaff");
         this.scalingDisplaySeal = document.getElementById("scalingSeal");
+    }
 
+    initializeStaffAndSealControls()
+    {
+        this.controlStaff = document.getElementById("controlStaff");
+        this.controlSeal = document.getElementById("controlSeal");
+        this.controlStaff.addEventListener("change", this.toolStaffChange.bind(this));
+        this.controlSeal.addEventListener("change", this.toolSealChange.bind(this));
+    }
+
+    initializeSpellTypeAndSorting()
+    {
+        this.controlSorting = document.getElementById("controlSorting");
+        this.controlSpellType = document.getElementById("controlSpellType");
+        this.controlSpellType.addEventListener("change", this.toolFilterChange.bind(this));
+        this.controlSorting.addEventListener("change", this.onSortChange.bind(this));
+    }
+
+    initializeSpellSchools()
+    {
         this.schoolsContainer = document.getElementById("schoolsContainer");
         this.populateSchoolList();
 
         for (let i = 0; i < spellSchools.length; i++)
         {
             spellSchools[i].activeCount = 0;
-            spellSchools[i].control = document.getElementById("schoolSelect"+i);
+            spellSchools[i].control = document.getElementById("schoolSelect" + i);
             spellSchools[i].control.addEventListener("click", this.toggleSpellSchool.bind(this));
         }
+    }
 
-        this.populateStaffList();
-        this.populateSealList();
-        this.updateDisplay();
+    initializeUpgrades()
+    {
+        this.regularSmithingStoneControl = document.getElementById("upgradeControl0");
+        this.somberSmithingStoneControl = document.getElementById("upgradeControl1");
+        this.regularSmithingStoneControl.value = this.configuration.weaponLevels.regular;
+        this.somberSmithingStoneControl.value = this.configuration.weaponLevels.somber;
+        this.regularSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
+        this.somberSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
+    }
+
+    initializeMainStats()
+    {
+        this.statControls = ["strength", "dexterity", "intelligence", "faith", "arcane"];
+        for (const controlId of this.statControls)
+        {
+            const control = document.querySelector("input#" + controlId);
+            const stat = this.configuration.stats.find(it => it.name === controlId);
+            control.value = parseInt(stat.value);
+            control.addEventListener("change", this.statControlInput.bind(this));
+        }
+    }
+
+    initializeDefenseAndNegation()
+    {
+        this.defenseControls = [];
+        for (let i = 0; i < this.configuration.damageTypes.length; i++)
+        {
+            this.defenseControls[i] = document.getElementById("statControlDefense" + i);
+            this.defenseControls[i].addEventListener("change", this.defenseControlInput.bind(this));
+        }
+
+        this.negationControls = [];
+        for (let i = 0; i < this.configuration.damageTypes.length; i++)
+        {
+            this.negationControls[i] = document.getElementById("statControlNegation" + i);
+            this.negationControls[i].addEventListener("change", this.negationControlInput.bind(this));
+        }
     }
 }
 
