@@ -62,7 +62,7 @@ input, select, option {
     border-style: none;
     background-color: #0d0d0b77;
     color: var(--colorText);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-align: center;
     width: 100%;
 }
@@ -80,8 +80,8 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5rem;
-    line-height: 2.6rem;
+    font-size: 2.15rem;
+    line-height: 2.25rem;
     font-weight: normal;
     font-weight: bold;
     padding: 0.25rem 0rem 0.25rem 0rem;
@@ -117,7 +117,6 @@ table tr td {
 thead tr {
     font-weight: bold;
     color: var(--colorAccentLight);
-    font-size: 1.8rem;
     background-color: #413d33;
 }
 

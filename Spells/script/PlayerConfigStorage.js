@@ -30,7 +30,7 @@ class PlayerConfigStorage
     }
 
     static loadConfiguration()
-    {        
+    {
         const config = localStorage.getItem(PlayerConfigStorage.IDENTIFIER);
         if (config != null)
             return JSON.parse(config);
@@ -48,8 +48,8 @@ class PlayerConfigStorage
     static getDefaultConfig()
     {
         return {
-            selectedStaff: 0,
-            selectedSeal: 0,
+            selectedStaff: 2,
+            selectedSeal: 3,
             showCharged : false,
             weaponLevels : {
                 regular: 25,
