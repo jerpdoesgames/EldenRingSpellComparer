@@ -1,70 +1,12 @@
-const SORT_NAME = 0;
-const SORT_FP_COST = 1;
-const SORT_AR_NET = 2;
-const SORT_DAMAGE_NET = 3;
-const SORT_AR_FP_NET = 4;
-const SORT_DMG_FP = 5;
-
-const ATTACK_INDEX_MAX = 2;
+const {
+    SORT_NAME, SORT_FP_COST, SORT_AR_NET, SORT_DAMAGE_NET, SORT_AR_FP_NET, SORT_DMG_FP,
+    ATTACK_INDEX_MAX
+} = ELDEN_RING_TOOLS_CONSTANTS.SPELL_COMPARER;
 
 class spellComparer
 {
     updateOnChange = true;  // Disabled temporarily when modifying input fields without user intervention
-    configuration = {
-        selectedStaff: 0,
-        selectedSeal: 0,
-        showCharged : false,
-        weaponLevels : {
-            regular: 25,
-            somber: 10
-        },
-        damageTypes : [
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            },
-            {
-                defense: 90,
-                negation: 10.00
-            }
-        ],
-        sort : SORT_DMG_FP,
-        filter : SPELL_TYPE_ALL,
-        stats: [
-            {
-                name: "strength",
-                value: 10
-            },
-            {
-                name: "dexterity",
-                value: 10
-            },
-            {
-                name: "intelligence",
-                value: 80
-            },
-            {
-                name: "faith",
-                value: 50
-            },
-            {
-                name: "arcane",
-                value: 18
-            }
-        ]
-    };
+    configuration = PlayerConfigStorage.getInstance().getConfig();
 
     getDamageTypeString(aDamageType)
     {
@@ -90,20 +32,20 @@ class spellComparer
 
     combineHitData(aHitDataList, aAttackIndex = -1, aIsCharged = false, aSpellBuffMultiplier = 1.0, aFPOverride = 0, aShowAttackIndex = false)
     {
-        let displayEntry = {};
+        let displayEntry = {
+            netDamage: 0,
+            hitCount: 0,
+            netAR: 0,
+            fpCostOverride: aFPOverride,
+        };
+
         let foundValidHits = false;
-        displayEntry.netDamage = 0;
-        displayEntry.hitCount = 0;
-        displayEntry.netAR = 0;
-        displayEntry.fpCostOverride = aFPOverride;
         let arBreakdownList = [];
 
         let hitNotes = [];
 
-        for (let hitIndex = 0; hitIndex < aHitDataList.length; hitIndex++)
+        for (const curHitData of aHitDataList)
         {
-            let curHitData = aHitDataList[hitIndex];
-
             if ((aAttackIndex == -1 || curHitData.attackIndex == aAttackIndex) && curHitData.isCharged == aIsCharged)
             {
                 if (displayEntry.damageType == null)
@@ -157,15 +99,7 @@ class spellComparer
     toggleSpellSchool(aEvent)
     {
         let schoolIndex = parseInt(aEvent.target.id.substring(12));
-        if (spellSchools[schoolIndex].activeCount >= 1)
-        {
-            spellSchools[schoolIndex].activeCount = 0;
-        }
-        else
-        {
-            spellSchools[schoolIndex].activeCount = 1;
-        }
-
+        spellSchools[schoolIndex].activeCount = spellSchools[schoolIndex].activeCount >= 1 ? 0 : 1;
         this.updateDisplay();
     }
 
@@ -185,8 +119,9 @@ class spellComparer
 
     statControlInput(aEvent)
     {
-        let statIndex = parseInt(aEvent.target.id.substring(11));
-        this.configuration.stats[statIndex].value = parseInt(this.statControls[statIndex].value);
+        let statName = aEvent.target.id
+        let stat = this.configuration.stats.find(it => it.name == statName);
+        stat.value = parseInt(aEvent.target.value);
         this.updateDisplay();
     }
 
@@ -238,11 +173,11 @@ class spellComparer
     populateStaffList()
     {
         let output = "";
-        for (let i = 0; i < staves.length; i++)
-        {
+
+        staves.forEach((staff, i) => {
             let selectedString = (this.configuration.selectedStaff == i) ? " selected" : "";
-            output += `<option value="${i}"${selectedString}>${staves[i].name}</option>`
-        }
+            output += `<option value="${i}" ${selectedString}>${staff.name}</option>`
+        })
 
         this.controlStaff.innerHTML = output;
     }
@@ -250,11 +185,11 @@ class spellComparer
     populateSealList()
     {
         let output = "";
-        for (let i = 0; i < seals.length; i++)
-        {
+
+        seals.forEach((seal, i) => {
             let selectedString = (this.configuration.selectedSeal == i) ? " selected" : "";
-            output += `<option value="${i}"${selectedString}>${seals[i].name}</option>`
-        }
+            output += `<option value="${i}" ${selectedString}>${seal.name}</option>`
+        })
 
         this.controlSeal.innerHTML = output;
     }
@@ -263,19 +198,17 @@ class spellComparer
     {
         let output = "";
 
-        for (let i = 0; i < spellSchools.length; i++)
-        {
-            output += `<div id="schoolSelect${i}" class="schoolsContainerEntry">${spellSchools[i].name}<span class="schoolCheck1">&#10003;</span><span class="schoolCheck2">x2</span></div>`;
-        }
+        spellSchools.forEach((school, i) => {
+            output += `<div id="schoolSelect${i}" class="schoolsContainerEntry">${school.name}<span class="schoolCheck1">&#10003;</span><span class="schoolCheck2">x2</span></div>`;
+        })
 
         this.schoolsContainer.innerHTML = output;
     }
 
     updateSchoolChecks()
     {
-        for(let i = 0; i < spellSchools.length; i++)
+        for (const curSchool of spellSchools)
         {
-            let curSchool = spellSchools[i];
             if (curSchool.activeCount == 2)
             {
                 curSchool.control.classList.add("schoolsContainerEntrySelected2");
@@ -297,63 +230,29 @@ class spellComparer
 
     getMatchingHitData(aHitData, aAttackIndex, aHitIndex)
     {
-        for (let i = 0; i < aHitData.length; i++)
-        {
-            if (aHitData[i].attackIndex == aAttackIndex && aHitData[i].hitIndex == aHitIndex)
-            {
-                return aHitData[i];
-            }
-        }
-
-        return null;
+        return aHitData.find(curHitData => curHitData.attackIndex == aAttackIndex && curHitData.hitIndex == aHitIndex);
     }
 
     formatDamageForDisplay(aInputValue)
     {
-        if (aInputValue == 0)
+        return aInputValue == 0 ? "-" : Math.round(aInputValue * 100) / 100;
+    }
+
+    sortBy({ property, sortOrder })
+    {
+        return (a, b) => 
         {
-            return "-";
+            switch (sortOrder) {
+            case "asc":
+                return a[property] - b[property];
+            case "desc":
+                return b[property] - a[property];
+            default:
+                throw new Error("Invalid sort order, expected 'asc' or 'desc'");
+            }
         }
-        else
-        {
-            return Math.round(aInputValue * 100) / 100;
-        }
     }
 
-    // Ascending
-    sortByName(a, b)
-    {
-        return a.name < b.name ? -1 : 1;
-    }
-
-    // Descending
-    sortByNetAR(a, b)
-    {
-        return b.netAR - a.netAR;
-    }
-
-    // Descending
-    sortByNetDamage(a, b)
-    {
-        return b.netDamage - a.netDamage;
-    }
-
-    // Descending
-    sortByNetARFP(a, b)
-    {
-        return b.netARFP - a.netARFP;
-    }
-
-    // Descending
-    sortByNetDamageFP(a, b)
-    {
-        return b.netDamageFP - a.netDamageFP;
-    }
-
-    sortByFPCost(a, b)
-    {
-        return b.fpCost - a.fpCost;
-    }
 
     checkFromBool(aInput)
     {
@@ -363,6 +262,9 @@ class spellComparer
     updateDisplay()
     {
         this.updateSchoolChecks();
+
+        // Call setConfig to persist current settings in localStorage (as a side effect)
+        PlayerConfigStorage.getInstance().setConfig(this.configuration);
 
         let scalingStaff = [];
         let scalingSeal = [];
@@ -400,7 +302,6 @@ class spellComparer
 
         for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
         {
-
             if (eldenRingScalingCalc.isToolScaledByStat(selectedStaff, statIndex, DAMAGE_MAGIC - 1))
             {
                 scalingStaff[statIndex] = eldenRingScalingCalc.calculateToolScalingForStat(selectedStaff, statIndex, DAMAGE_MAGIC - 1, weaponLevelStaff, this.configuration.stats[statIndex].value)
@@ -426,11 +327,7 @@ class spellComparer
 
         if (reqMetStaff)
         {
-            let totalScaling = 100;
-            for (let i = 0; i < scalingStaff.length; i++)
-            {
-                totalScaling += scalingStaff[i];
-            }
+            let totalScaling = 100 + scalingStaff.reduce((a, b) => a + b);
             this.scalingDisplayStaff.innerHTML = Math.floor(totalScaling);
         }
         else
@@ -440,11 +337,7 @@ class spellComparer
 
         if (reqMetSeal)
         {
-            let totalScaling = 100;
-            for (let i = 0; i < scalingSeal.length; i++)
-            {
-                totalScaling += scalingSeal[i];
-            }
+            let totalScaling = 100 + scalingSeal.reduce((a, b) => a + b);
             this.scalingDisplaySeal.innerHTML = Math.floor(totalScaling);
         }
         else
@@ -455,10 +348,8 @@ class spellComparer
         let output = "";
         let outputRows = [];
 
-        for (let spellIndex = 0; spellIndex < spellData.length; spellIndex++)
+        for (const curSpell of spellData)
         {
-            let curSpell = spellData[spellIndex];
-
             if (this.configuration.filter == SPELL_TYPE_ALL || this.configuration.filter == curSpell.toolType)
             {
                 if (curSpell.hitData.length > 0)
@@ -478,13 +369,13 @@ class spellComparer
                             schoolMultiplier *= curTool.schoolMultiplier;
                         }
 
-                        for (let schoolIndex = 0; schoolIndex < spellSchools.length; schoolIndex++)
+                        for (const element of spellSchools)
                         {
-                            if (curSpell.magicEffectCategory == spellSchools[schoolIndex].magicEffectCategory)
+                            if (curSpell.magicEffectCategory == element.magicEffectCategory)
                             {
-                                if (spellSchools[schoolIndex].activeCount >= 1)
+                                if (element.activeCount >= 1)
                                 {
-                                    schoolMultiplier *= spellSchools[schoolIndex].schoolMultiplier;
+                                    schoolMultiplier *= element.schoolMultiplier;
                                 }
                                 break;
                             }
@@ -531,9 +422,9 @@ class spellComparer
                         let useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
 
                         let maxAttackIndex = -1;
-                        for (let i = 0; i < curSpell.hitData.length; i++)
+                        for (const element of curSpell.hitData)
                         {
-                            maxAttackIndex = Math.max(maxAttackIndex, curSpell.hitData[i].attackIndex);
+                            maxAttackIndex = Math.max(maxAttackIndex, element.attackIndex);
                         }
 
                         if (curSpell.hitDisplayData.length == 0)
@@ -549,14 +440,14 @@ class spellComparer
                         }
                         else
                         {
-                            for (let displayIndex = 0; displayIndex < curSpell.hitDisplayData.length; displayIndex++)
+                            for (const element of curSpell.hitDisplayData)
                             {
-                                let curDisplayEntry = curSpell.hitDisplayData[displayIndex];
+                                let curDisplayEntry = element;
                                 let hitEntries = [];
 
-                                for (let hitIndex = 0; hitIndex < curDisplayEntry.componentHits.length; hitIndex++)
+                                for (const hit of curDisplayEntry.componentHits)
                                 {
-                                    let foundHitData = this.getMatchingHitData(curSpell.hitData, curDisplayEntry.componentHits[hitIndex].attackIndex, curDisplayEntry.componentHits[hitIndex].hitIndex);
+                                    let foundHitData = this.getMatchingHitData(curSpell.hitData, hit.attackIndex, hit.hitIndex);
                                     if (foundHitData != null)
                                     {
                                         hitEntries.push(foundHitData);
@@ -575,10 +466,9 @@ class spellComparer
                     }
 
                     let toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
-                    for (let displayIndex = 0; displayIndex < hitDisplayEntries.length; displayIndex++)
+                    for (const curDisplayEntry of hitDisplayEntries)
                     {
 
-                        let curDisplayEntry = hitDisplayEntries[displayIndex];
                         let useFPCost = curDisplayEntry.fpCostOverride > 0 ? curDisplayEntry.fpCostOverride : curSpell.fpCostBase;
                         useFPCost = Math.ceil(curTool.fpCostMultiplier * useFPCost);
                         let damageTypeString = this.getDamageTypeString(curDisplayEntry.damageType);
@@ -617,29 +507,27 @@ class spellComparer
         switch(this.configuration.sort)
         {
             case SORT_NAME:
-                outputRows.sort(this.sortByName);
+                outputRows.sort(this.sortBy({ property: "name", sortOrder: "asc"}));
                 break;
             case SORT_FP_COST:
-                outputRows.sort(this.sortByFPCost);
+                outputRows.sort(this.sortBy({ property: "fpCost", sortOrder: "desc"}));
                 break;
             case SORT_AR_NET:
-                outputRows.sort(this.sortByNetAR);
+                outputRows.sort(this.sortBy({ property: "netAR", sortOrder: "desc"}));
                 break;
             case SORT_DAMAGE_NET:
-                outputRows.sort(this.sortByNetDamage);
+                outputRows.sort(this.sortBy({ property: "netDamage", sortOrder: "desc"}));
                 break;
             case SORT_AR_FP_NET:
-                outputRows.sort(this.sortByNetARFP);
+                outputRows.sort(this.sortBy({ property: "netARFP", sortOrder: "desc"}));
                 break;
             case SORT_DMG_FP:
-                outputRows.sort(this.sortByNetDamageFP);
+                outputRows.sort(this.sortBy({ property: "netDamageFP", sortOrder: "desc"}));
                 break;
         }
 
-        for (let outputIndex = 0; outputIndex < outputRows.length; outputIndex++)
+        for (const curRow of outputRows)
         {
-            let curRow = outputRows[outputIndex];
-
             let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curRow.intelligence);
             let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curRow.faith);
             let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curRow.arcane);
@@ -710,57 +598,92 @@ class spellComparer
     initialize()
     {
         this.contentElement = document.getElementById("outputDiv");
-        this.controlSorting = document.getElementById("controlSorting");
-        this.controlSpellType = document.getElementById("controlSpellType");
-        this.controlStaff = document.getElementById("controlStaff");
-        this.controlSeal = document.getElementById("controlSeal");
+        
+        this.initializeStaffAndSealControls();
+        this.initializeDefenseAndNegation();
+        this.initializeMainStats();
+        this.initializeUpgrades();
+        this.initializeSpellTypeAndSorting();
+        this.initializeStaffAndSealScaling();
+        this.initializeSpellSchools();
 
-        this.controlStaff.addEventListener("change", this.toolStaffChange.bind(this));
-        this.controlSeal.addEventListener("change", this.toolSealChange.bind(this));
+        this.populateStaffList();
+        this.populateSealList();
+        this.updateDisplay();
+    }
 
-        this.defenseControls = [];
-        for (let i = 0; i < this.configuration.damageTypes.length; i++)
-        {
-            this.defenseControls[i] = document.getElementById("statControlDefense"+i);
-            this.defenseControls[i].addEventListener("change", this.defenseControlInput.bind(this));
-        }
-
-        this.negationControls = [];
-        for (let i = 0; i < this.configuration.damageTypes.length; i++)
-        {
-            this.negationControls[i] = document.getElementById("statControlNegation"+i);
-            this.negationControls[i].addEventListener("change", this.negationControlInput.bind(this));
-        }
-
-        this.statControls = [];
-        for (let i = 0; i < this.configuration.stats.length; i++)
-        {
-            this.statControls[i] = document.getElementById("statControl"+i);
-            this.statControls[i].addEventListener("change", this.statControlInput.bind(this));
-        }
-
-        document.getElementById("upgradeControl0").addEventListener("change", this.upgradeControlInput.bind(this));
-        document.getElementById("upgradeControl1").addEventListener("change", this.upgradeControlInput.bind(this));
-
-        document.getElementById("controlSpellType").addEventListener("change", this.toolFilterChange.bind(this));
-        document.getElementById("controlSorting").addEventListener("change", this.onSortChange.bind(this));
-
+    initializeStaffAndSealScaling()
+    {
         this.scalingDisplayStaff = document.getElementById("scalingStaff");
         this.scalingDisplaySeal = document.getElementById("scalingSeal");
+    }
 
+    initializeStaffAndSealControls()
+    {
+        this.controlStaff = document.getElementById("controlStaff");
+        this.controlSeal = document.getElementById("controlSeal");
+        this.controlStaff.addEventListener("change", this.toolStaffChange.bind(this));
+        this.controlSeal.addEventListener("change", this.toolSealChange.bind(this));
+    }
+
+    initializeSpellTypeAndSorting()
+    {
+        this.controlSorting = document.getElementById("controlSorting");
+        this.controlSpellType = document.getElementById("controlSpellType");
+        this.controlSpellType.addEventListener("change", this.toolFilterChange.bind(this));
+        this.controlSorting.addEventListener("change", this.onSortChange.bind(this));
+    }
+
+    initializeSpellSchools()
+    {
         this.schoolsContainer = document.getElementById("schoolsContainer");
         this.populateSchoolList();
 
         for (let i = 0; i < spellSchools.length; i++)
         {
             spellSchools[i].activeCount = 0;
-            spellSchools[i].control = document.getElementById("schoolSelect"+i);
+            spellSchools[i].control = document.getElementById("schoolSelect" + i);
             spellSchools[i].control.addEventListener("click", this.toggleSpellSchool.bind(this));
         }
+    }
 
-        this.populateStaffList();
-        this.populateSealList();
-        this.updateDisplay();
+    initializeUpgrades()
+    {
+        this.regularSmithingStoneControl = document.getElementById("upgradeControl0");
+        this.somberSmithingStoneControl = document.getElementById("upgradeControl1");
+        this.regularSmithingStoneControl.value = this.configuration.weaponLevels.regular;
+        this.somberSmithingStoneControl.value = this.configuration.weaponLevels.somber;
+        this.regularSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
+        this.somberSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
+    }
+
+    initializeMainStats()
+    {
+        this.statControls = ["strength", "dexterity", "intelligence", "faith", "arcane"];
+        for (const controlId of this.statControls)
+        {
+            const control = document.querySelector("input#" + controlId);
+            const stat = this.configuration.stats.find(it => it.name === controlId);
+            control.value = parseInt(stat.value);
+            control.addEventListener("change", this.statControlInput.bind(this));
+        }
+    }
+
+    initializeDefenseAndNegation()
+    {
+        this.defenseControls = [];
+        for (let i = 0; i < this.configuration.damageTypes.length; i++)
+        {
+            this.defenseControls[i] = document.getElementById("statControlDefense" + i);
+            this.defenseControls[i].addEventListener("change", this.defenseControlInput.bind(this));
+        }
+
+        this.negationControls = [];
+        for (let i = 0; i < this.configuration.damageTypes.length; i++)
+        {
+            this.negationControls[i] = document.getElementById("statControlNegation" + i);
+            this.negationControls[i].addEventListener("change", this.negationControlInput.bind(this));
+        }
     }
 }
 

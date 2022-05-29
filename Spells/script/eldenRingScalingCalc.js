@@ -18,13 +18,7 @@ class eldenRingScalingCalc
 
     static getScalingMapByID(aMapID)
     {
-        for (var i = 0; i < statScalingMap.length; i++)
-        {
-            if (statScalingMap[i].id == aMapID)
-            {
-                return statScalingMap[i];
-            }
-        }
+        return Object.values(statScalingMap).find(it => it.id == aMapID);
     }
 
     static isToolScaledByStat(aTool, aStatIndex, aDamageTypeIndex)
