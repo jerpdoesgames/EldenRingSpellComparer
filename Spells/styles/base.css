@@ -26,20 +26,10 @@ html, body {
     text-shadow: 0.15rem 0.15rem 0.0rem rgba(0, 0, 0, 0.50);
 }
 
-@font-face {
-	font-family: Garamond;
-	src: url('../fonts/gara.ttf');
-}
-
-@font-face {
-	font-family: GaramondBold;
-	src: url('../fonts/garabd.ttf');
-}
-
 body {
 	margin: 4rem 0rem 0rem 0rem;
-	font-size: 1.8rem;
-	font-family: Garamond, Helvetica, Arial, sans-serif;
+	font-size: 1.6rem;
+	font-family: Calibri, Adobe Gothic Standard B, Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -48,7 +38,7 @@ a {
 
 a:link, a:active {
     color: var(--colorAccentDark);
-    font-family: GaramondBold;
+    font-weight: bold;
 }
 
 a:visited {
@@ -81,7 +71,7 @@ h1 {
     font-size: 4rem;
     line-height: 5.2rem;
     font-weight: normal;
-    font-family: GaramondBold;
+    font-weight: bold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -93,7 +83,7 @@ h2 {
     font-size: 2.5rem;
     line-height: 2.6rem;
     font-weight: normal;
-    font-family: GaramondBold;
+    font-weight: bold;
     padding: 0.25rem 0rem 0.25rem 0rem;
     text-align: center;
     background-color: #34362a66;
@@ -125,7 +115,7 @@ table tr td {
 }
 
 thead tr {
-    font-family: Garamond, Helvetica, Arial, sans-serif;
+    font-weight: bold;
     color: var(--colorAccentLight);
     font-size: 1.8rem;
     background-color: #413d33;

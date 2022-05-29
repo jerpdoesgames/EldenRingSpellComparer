@@ -240,7 +240,7 @@ class spellComparer
 
     sortBy({ property, sortOrder })
     {
-        return (a, b) => 
+        return (a, b) =>
         {
             switch (sortOrder) {
             case "asc":
@@ -532,32 +532,32 @@ class spellComparer
             let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curRow.faith);
             let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curRow.arcane);
 
-            let reqClassIntelligence = reqMetIntelligence ? "" : " requirementUnmet";
-            let reqClassFaith = reqMetFaith ? "" : " requirementUnmet";
-            let reqClassArcane = reqMetArcane ? "" : " requirementUnmet";
+            let reqClassIntelligence = reqMetIntelligence ? "" : "requirementUnmet";
+            let reqClassFaith = reqMetFaith ? "" : "requirementUnmet";
+            let reqClassArcane = reqMetArcane ? "" : "requirementUnmet";
 
             output += `
                 <tr>
                     <td class="displayColName">${curRow.name}</td>
-                    <td class="displayColType">${curRow.type}</td>
-                    <td class="displayColDmgType">${curRow.damageType}</td>
-                    <td class="displayColHitType">${curRow.hitNote}</td>
-                    <td class="displayColFP">${curRow.fpCost}</td>
-                    <td class="displayColHitCount">${curRow.hitCount}</td>
-                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netAR)}</td>
-                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netARFP)}</td>
-                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamage)}</td>
-                    <td class="displayColARDmg">${this.formatDamageForDisplay(curRow.netDamageFP)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowCharge)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowChain)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowFollowup)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowChannel)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowMovement)}</td>
-                    <td class="displayColARDmg">${this.checkFromBool(curRow.allowHorseback)}</td>
-                    <td class="displayColStat${reqClassIntelligence}">${curRow.intelligence}</td>
-                    <td class="displayColStat${reqClassFaith}">${curRow.faith}</td>
-                    <td class="displayColStat${reqClassArcane}">${curRow.arcane}</td>
-                    <td class="displayColHitType leftAlign">${curRow.arBreakdown}</td>
+                    <td>${curRow.type}</td>
+                    <td>${curRow.damageType}</td>
+                    <td>${curRow.hitNote}</td>
+                    <td>${curRow.fpCost}</td>
+                    <td>${curRow.hitCount}</td>
+                    <td>${this.formatDamageForDisplay(curRow.netAR)}</td>
+                    <td>${this.formatDamageForDisplay(curRow.netARFP)}</td>
+                    <td>${this.formatDamageForDisplay(curRow.netDamage)}</td>
+                    <td>${this.formatDamageForDisplay(curRow.netDamageFP)}</td>
+                    <td>${this.checkFromBool(curRow.allowCharge)}</td>
+                    <td>${this.checkFromBool(curRow.allowChain)}</td>
+                    <td>${this.checkFromBool(curRow.allowFollowup)}</td>
+                    <td>${this.checkFromBool(curRow.allowChannel)}</td>
+                    <td>${this.checkFromBool(curRow.allowMovement)}</td>
+                    <td>${this.checkFromBool(curRow.allowHorseback)}</td>
+                    <td class="${reqClassIntelligence}">${curRow.intelligence}</td>
+                    <td class="${reqClassFaith}">${curRow.faith}</td>
+                    <td class="${reqClassArcane}">${curRow.arcane}</td>
+                    <td class="leftAlign">${curRow.arBreakdown}</td>
                 </tr>
             `;
         }
@@ -567,25 +567,25 @@ class spellComparer
             <thead>
                 <tr>
                     <th class="displayColName">Name</th>
-                    <th class="displayColType">Type</th>
-                    <th class="displayColDmgType">DMG Type</th>
-                    <th class="displayColType">Note</th>
-                    <th class="displayColFP">FP</th>
-                    <th class="displayColHitCount">Hits</th>
-                    <th class="displayColARDmg">Net AR</th>
-                    <th class="displayColARDmg">Net AR/FP</th>
-                    <th class="displayColARDmg">Net DMG</th>
-                    <th class="displayColARDmg">Net DMG/FP</th>
-                    <th class="displayColType">Charge?</th>
-                    <th class="displayColType">Chain?</th>
-                    <th class="displayColType">Followup?</th>
-                    <th class="displayColType">Channel?</th>
-                    <th class="displayColType">Movement?</th>
-                    <th class="displayColType">Horseback?</th>
-                    <th class="displayColStat">Int</th>
-                    <th class="displayColStat">Fai</th>
-                    <th class="displayColStat">Arc</th>
-                    <th class="displayColStat leftAlign">Base AR Breakdown</th>
+                    <th>Type</th>
+                    <th>DMG Type</th>
+                    <th>Note</th>
+                    <th>FP</th>
+                    <th>Hits</th>
+                    <th>Net AR</th>
+                    <th>Net AR/FP</th>
+                    <th>Net DMG</th>
+                    <th>Net DMG/FP</th>
+                    <th>Charge?</th>
+                    <th>Chain?</th>
+                    <th>Followup?</th>
+                    <th>Channel?</th>
+                    <th>Movement?</th>
+                    <th>Horseback?</th>
+                    <th>Int</th>
+                    <th>Fai</th>
+                    <th>Arc</th>
+                    <th class="leftAlign">Base AR Breakdown</th>
                 </tr>
             </thead>
             <tbody>
@@ -598,7 +598,7 @@ class spellComparer
     initialize()
     {
         this.contentElement = document.getElementById("outputDiv");
-        
+
         this.initializeStaffAndSealControls();
         this.initializeDefenseAndNegation();
         this.initializeMainStats();
