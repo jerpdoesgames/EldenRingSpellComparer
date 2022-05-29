@@ -5,14 +5,14 @@ A web app to compare AR, Damage, and FP Efficiency for offensive spells.
 
 ## How to Use:
 
-  * Enter in your stats (str/dex/int/fai/arc)
-  * Select your desired casting tool(s)
-  * Select the regular/somber upgrade level for the casting tool(s) you want to use.
-  * If you use an off-hand casting tool to boost damage via a particular spell school, click the desired school(s) from the "Extra Spell Schools" list.
-    * Whatever casting tool(s) you've selected will also confer any school bonuses they offer (so you can double up if necessary).
-  * Enter in whatever defense values you think your target may have.
-    * For PvP, you can generally look at your own build or similar builds at your level.  You can use this [build planner](https://eip.gg/elden-ring/build-planner/) for reference.
-    * For PvE, you can consult [this sheet for defense/absorption values for all enemies/bosses](https://docs.google.com/spreadsheets/d/1aujq95UfL_oUs3voPt3nGqM1hLhaVJOj6JKB6Np3FD8/edit#gid=1315305173) (the same defense value is used for all damage types).
+* Enter in your stats (str/dex/int/fai/arc)
+* Select your desired casting tool(s)
+* Select the regular/somber upgrade level for the casting tool(s) you want to use.
+* If you use an off-hand casting tool to boost damage via a particular spell school, click the desired school(s) from the "Extra Spell Schools" list.
+  * Whatever casting tool(s) you've selected will also confer any school bonuses they offer (so you can double up if necessary).
+* Enter in whatever defense values you think your target may have.
+  * For PvP, you can generally look at your own build or similar builds at your level.  You can use this [build planner](https://eip.gg/elden-ring/build-planner/) for reference.
+  * For PvE, you can consult [this sheet for defense/absorption values for all enemies/bosses](https://docs.google.com/spreadsheets/d/1aujq95UfL_oUs3voPt3nGqM1hLhaVJOj6JKB6Np3FD8/edit#gid=1315305173) (the same defense value is used for all damage types).
 
 Once you've entered in the data you want, the list below should populate (defaulting to sorting by Net Damage/FP).
 
