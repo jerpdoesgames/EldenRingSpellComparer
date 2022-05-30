@@ -632,6 +632,7 @@ class spellComparer
     initializeSpellTypeAndSorting()
     {
         this.controlSorting = document.getElementById("controlSorting");
+        this.controlSorting.value = this.configuration.sort;
         this.controlSpellType = document.getElementById("controlSpellType");
         this.controlSpellType.addEventListener("change", this.toolFilterChange.bind(this));
         this.controlSorting.addEventListener("change", this.onSortChange.bind(this));
