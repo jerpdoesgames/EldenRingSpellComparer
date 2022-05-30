@@ -471,7 +471,7 @@ class spellComparer
 
                         let useFPCost = curDisplayEntry.fpCostOverride > 0 ? curDisplayEntry.fpCostOverride : curSpell.fpCostBase;
                         useFPCost = Math.ceil(curTool.fpCostMultiplier * useFPCost);
-                        let damageTypeString = this.getDamageTypeString(curDisplayEntry.damageType);
+
                         let schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
                         let netDamageFP = schoolBoostedDamage / useFPCost;
                         let netARFP = curDisplayEntry.netAR / useFPCost;
@@ -480,7 +480,7 @@ class spellComparer
                         outputRows.push({
                             name: curSpell.name + attackIndexString,
                             type: toolTypestring,
-                            damageType: damageTypeString,
+                            damageType: curDisplayEntry.damageType,
                             hitNote: curDisplayEntry.hitNote,
                             fpCost: useFPCost,
                             hitCount: curDisplayEntry.hitCount,
@@ -536,11 +536,14 @@ class spellComparer
             let reqClassFaith = reqMetFaith ? "" : "requirementUnmet";
             let reqClassArcane = reqMetArcane ? "" : "requirementUnmet";
 
+            let damageTypeString = this.getDamageTypeString(curRow.damageType);
+            let damageTypeClass = (curRow.damageType != DAMAGE_PHYSICAL) ? ` class="damageType${damageTypeString}"` : "";
+
             output += `
                 <tr>
                     <td class="displayColName">${curRow.name}</td>
-                    <td>${curRow.type}</td>
-                    <td>${curRow.damageType}</td>
+                    <td class="spellType${curRow.type}">${curRow.type}</td>
+                    <td${damageTypeClass}>${damageTypeString}</td>
                     <td>${curRow.hitNote}</td>
                     <td>${curRow.fpCost}</td>
                     <td>${curRow.hitCount}</td>

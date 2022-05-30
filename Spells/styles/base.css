@@ -5,16 +5,43 @@
 	font-size: 10px;
 	--colorBG: #22221e;
 	--colorDivider: #3c3932;
-	--colorText: #cac9c5;
-	--colorAccentLight: #b2ab99;
+	--colorText: #dddcd6;
+	--colorAccentLight: #e4dbc5;
 
     --borderThicknessGeneric: 0.4rem;
-    --colorAccentDark: #afa780;
+    --colorAccentDark: #d6cc9c;
     --colorRequirementUnmet: #e46363;
     --colorSchoolBuff: #7bca71;
     --calculatedVH: 1vh;
 }
 
+.spellTypeSorcery {
+    color: #b4daf8;
+}
+
+.spellTypeIncantation {
+    color: #fbfcbd;
+}
+
+.damageTypeMagic {
+    color: #b4daf8;
+}
+
+.damageTypeFire {
+    color: #f0b4ac;
+}
+
+.damageTypeLightning {
+    color: #fdd791;
+}
+
+.damageTypeHoly {
+    color: #fbfcbd;
+}
+
+.damageTypeMixed {
+    color: #cfbbf0;
+}
 
 html, body {
     padding: 0rem;
