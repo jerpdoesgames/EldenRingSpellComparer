@@ -25,6 +25,7 @@ You can also see some useful information like whether the spell can be cast on h
 
 # My Other Tools
 
+* **[Armor Optimizer](https://jerp.tv/eldenring/armor/)** (Find the best armor based on desired weight, poise, and negation/resistances.)
 * **[Casting Tool Comparator](https://jerp.tv/eldenring/spelltools/)** (Enter in your desired stats and compare how each Staff and Seal performs relative to each other.)
 * **[Rune Level Calculator](https://jerp.tv/eldenring/runes/)** (Find out the level of the player who died based on how many runes you received.)
 
