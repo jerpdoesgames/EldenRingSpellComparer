@@ -40,12 +40,6 @@
             <a href="https://jerp.tv/eldenring">Other helpful Elden Ring Tools &amp; Info</a>
         </p>
 
-        <p class="mainDescription">
-            <b>Note:</b> Only offensive spells that deal damage or add AR are listed (no healing, Flame, Grant Me
-            Strength, Terra Magicus, Frozen Armament, etc.).
-        </p>
-        <p class="mainDescription">(Only shows spells that can be cast with current stats).</p>
-
         <div id="contentBody">
             <div class="controlsContainer">
                 <h2>Stats</h2>
@@ -126,7 +120,7 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td>Phyiscal</td>
+                        <td>Physical</td>
                         <td class="colStatLevelInput">
                             <input id="statControlDefense0" onfocus="this.select();" type="number" value="90" min="1" max="250" />
                         </td>
@@ -174,7 +168,7 @@
             </div>
 
             <div class="controlsContainer">
-                <h2>Sort/Filter</h2>
+                <h2>Controls, Sort &amp; Filter</h2>
                 <table class="statsTable">
                     <tr>
                         <td>Show:</td>
@@ -199,6 +193,11 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a href="#" onclick="toolInstance.resetToDefaults();">Reset All Settings to Default</a>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -209,7 +208,12 @@
             </div>
         </div>
 
-        <div id="outputDiv"></div>
+
+        <h3>Spells Which Directly Deal Damage:</h3>
+        <div id="outputDirectDamage"></div>
+
+        <h3>Other Spells:</h3>
+        <div id="outputOtherSpells"></div>
 
         <div id="footer">
             <p>

@@ -10,9 +10,14 @@
 
     --borderThicknessGeneric: 0.4rem;
     --colorAccentDark: #d6cc9c;
-    --colorRequirementUnmet: #e46363;
+    --colorRequirementUnmet: #e77474;
     --colorSchoolBuff: #7bca71;
+    --colorDisabled: #8a8a8a;
     --calculatedVH: 1vh;
+}
+
+.disabled {
+    color: var(--colorDisabled);
 }
 
 .spellTypeSorcery {
@@ -41,6 +46,36 @@
 
 .damageTypeMixed {
     color: #cfbbf0;
+}
+
+/* Slightly darker if disabled */
+
+.disabled .spellTypeSorcery {
+    color: #8ea6b9;
+}
+
+.disabled .spellTypeIncantation {
+    color: #b5b68d;
+}
+
+.disabled .damageTypeMagic {
+    color: #7a93a7;
+}
+
+.disabled .damageTypeFire {
+    color: #9e7d77;
+}
+
+.disabled .damageTypeLightning {
+    color: #ac9467;
+}
+
+.disabled .damageTypeHoly {
+    color: #adad87;
+}
+
+.disabled .damageTypeMixed {
+    color: #a496bb;
 }
 
 html, body {
@@ -116,7 +151,20 @@ h2 {
     background-color: #34362a66;
     border-top: 0.3rem solid #4c4940;
     border-bottom: 0.3rem solid #4c4940;
-    margin: 0rem 0rem 1rem 0rem;;
+    margin: 0rem 0rem 1rem 0rem;
+}
+
+h3 {
+    font-size: 2.15rem;
+    line-height: 2.25rem;
+    font-weight: normal;
+    font-weight: bold;
+    padding: 0.25rem 0rem 0.25rem 0rem;
+    text-align: center;
+    background-color: #34362a66;
+    border-top: 0.3rem solid #4c4940;
+    border-bottom: 0.3rem solid #4c4940;
+    margin: 0.75rem 0rem 1rem 0rem;
 }
 
 table {

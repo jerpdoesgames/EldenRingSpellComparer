@@ -43,8 +43,6 @@ class PlayerConfigStorage
         localStorage.setItem(PlayerConfigStorage.IDENTIFIER, JSON.stringify(config));
     }
 
-    // This isn't used anywhere, it's just for reference and to provide type-checking
-    // (TypeScript automatically infers the type of the return value, which we want to apply to the "config" property)
     static getDefaultConfig()
     {
         return {
@@ -100,7 +98,8 @@ class PlayerConfigStorage
                     name: "arcane",
                     value: 18
                 }
-            ]
+            ],
+            schoolActive: {}
         }
     }
 }

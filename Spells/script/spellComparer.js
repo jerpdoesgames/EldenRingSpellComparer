@@ -98,31 +98,41 @@ class spellComparer
 
     toggleSpellSchool(aEvent)
     {
-        let schoolIndex = parseInt(aEvent.target.id.substring(12));
-        spellSchools[schoolIndex].activeCount = spellSchools[schoolIndex].activeCount >= 1 ? 0 : 1;
-        this.updateDisplay();
+        const schoolIndex = parseInt(aEvent.target.id.substring(12));
+        const school = spellSchools[schoolIndex];
+        const activeCount = this.getSchoolActive(school.magicEffectCategory);
+        this.configuration.schoolActive[school.magicEffectCategory] = activeCount >= 1 ? 0 : 1;
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     defenseControlInput(aEvent)
     {
         let statIndex = parseInt(aEvent.target.id.substring(18));
         this.configuration.damageTypes[statIndex].defense = parseInt(this.defenseControls[statIndex].value);
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     negationControlInput(aEvent)
     {
         let statIndex = parseInt(aEvent.target.id.substring(19));
         this.configuration.damageTypes[statIndex].negation = parseFloat(this.negationControls[statIndex].value);
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     statControlInput(aEvent)
     {
-        let statName = aEvent.target.id
+        let statName = aEvent.target.id;
         let stat = this.configuration.stats.find(it => it.name == statName);
         stat.value = parseInt(aEvent.target.value);
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     upgradeControlInput(aEvent)
@@ -138,14 +148,18 @@ class spellComparer
         {
             this.configuration.weaponLevels.somber = controlValue;
         }
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     toolFilterChange(aEvent)
     {
         let controlValue = parseInt(aEvent.target.value);
         this.configuration.filter = controlValue;
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
 
@@ -153,21 +167,27 @@ class spellComparer
     {
         let controlValue = parseInt(aEvent.target.value);
         this.configuration.selectedStaff = controlValue;
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     toolSealChange(aEvent)
     {
         let controlValue = parseInt(aEvent.target.value);
         this.configuration.selectedSeal = controlValue;
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     onSortChange(aEvent)
     {
         let controlValue = parseInt(aEvent.target.value);
         this.configuration.sort = controlValue;
-        this.updateDisplay();
+
+        if (this.updateOnChange)
+            this.updateDisplay();
     }
 
     populateStaffList()
@@ -205,16 +225,22 @@ class spellComparer
         this.schoolsContainer.innerHTML = output;
     }
 
+    getSchoolActive(aMagicEffectCategory)
+    {
+        return this.configuration.schoolActive.hasOwnProperty(aMagicEffectCategory) ? this.configuration.schoolActive[aMagicEffectCategory] : 0 ;
+    }
+
     updateSchoolChecks()
     {
         for (const curSchool of spellSchools)
         {
-            if (curSchool.activeCount == 2)
+            let activeCount = this.getSchoolActive(curSchool.magicEffectCategory);
+            if (activeCount == 2)
             {
                 curSchool.control.classList.add("schoolsContainerEntrySelected2");
                 curSchool.control.classList.remove("schoolsContainerEntrySelected1");
             }
-            else if (curSchool.activeCount == 1)
+            else if (activeCount == 1)
             {
                 curSchool.control.classList.add("schoolsContainerEntrySelected1");
                 curSchool.control.classList.remove("schoolsContainerEntrySelected2");
@@ -224,7 +250,6 @@ class spellComparer
                 curSchool.control.classList.remove("schoolsContainerEntrySelected1");
                 curSchool.control.classList.remove("schoolsContainerEntrySelected2");
             }
-
         }
     }
 
@@ -238,7 +263,7 @@ class spellComparer
         return aInputValue == 0 ? "-" : Math.round(aInputValue * 100) / 100;
     }
 
-    sortBy({ property, sortOrder })
+    sortBy(property, sortOrder)
     {
         return (a, b) =>
         {
@@ -345,20 +370,22 @@ class spellComparer
             this.scalingDisplaySeal.innerHTML = "60";
         }
 
-        let output = "";
-        let outputRows = [];
+        const directDamageRows = [];
+        const otherSpellRows = [];
 
         for (const curSpell of spellData)
         {
             if (this.configuration.filter == SPELL_TYPE_ALL || this.configuration.filter == curSpell.toolType)
             {
+                const reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curSpell.intelligence);
+                const reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
+                const reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curSpell.arcane);
+                const requirementsMet = reqMetIntelligence && reqMetFaith && reqMetArcane;
+
                 if (curSpell.hitData.length > 0)
                 {
                     let curTool = curSpell.toolType == SPELL_TYPE_SORCERY ? selectedStaff : selectedSeal;
                     let hitDisplayEntries = [];
-                    let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curSpell.intelligence);
-                    let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curSpell.faith);
-                    let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curSpell.arcane);
 
                     let schoolMultiplier = 1.0;
 
@@ -373,7 +400,8 @@ class spellComparer
                         {
                             if (curSpell.magicEffectCategory == element.magicEffectCategory)
                             {
-                                if (element.activeCount >= 1)
+                                const activeCount = this.getSchoolActive(element.magicEffectCategory);
+                                if (activeCount >= 1)
                                 {
                                     schoolMultiplier *= element.schoolMultiplier;
                                 }
@@ -382,102 +410,89 @@ class spellComparer
                         }
                     }
 
-                    if (!reqMetIntelligence || !reqMetFaith || !reqMetArcane)
-                    {
-                        // Maybe show these?
-                    }
-                    else
-                    {
-                        let spellBuffMultiplier = 1.0;
-                        let toolRequirementMet = curSpell.toolType == SPELL_TYPE_SORCERY ? reqMetStaff : reqMetSeal;
-                        let spellBuffEntries = curSpell.toolType == SPELL_TYPE_SORCERY ? scalingStaff : scalingSeal;
+                    let spellBuffMultiplier = 1.0;
+                    let toolRequirementMet = curSpell.toolType == SPELL_TYPE_SORCERY ? reqMetStaff : reqMetSeal;
+                    let spellBuffEntries = curSpell.toolType == SPELL_TYPE_SORCERY ? scalingStaff : scalingSeal;
 
-                        if (toolRequirementMet)
+                    if (toolRequirementMet)
+                    {
+                        if (curSpell.isWeaponBuff)
                         {
-                            if (curSpell.isWeaponBuff)
-                            {
 
-                                if (curSpell.toolType == SPELL_TYPE_SORCERY)
-                                {
-                                    spellBuffMultiplier += (spellBuffEntries[STAT_INTELLIGENCE] / 100);
-                                }
-                                else
-                                {
-                                    spellBuffMultiplier += (spellBuffEntries[STAT_FAITH] / 100);
-                                }
+                            if (curSpell.toolType == SPELL_TYPE_SORCERY)
+                            {
+                                spellBuffMultiplier += (spellBuffEntries[STAT_INTELLIGENCE] / 100);
                             }
                             else
                             {
-                                for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
-                                {
-                                    spellBuffMultiplier += (spellBuffEntries[statIndex] / 100);
-                                }
+                                spellBuffMultiplier += (spellBuffEntries[STAT_FAITH] / 100);
                             }
                         }
                         else
                         {
-                            spellBuffMultiplier = 0.6;
-                        }
-
-                        let useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
-
-                        let maxAttackIndex = -1;
-                        for (const element of curSpell.hitData)
-                        {
-                            maxAttackIndex = Math.max(maxAttackIndex, element.attackIndex);
-                        }
-
-                        if (curSpell.hitDisplayData.length == 0)
-                        {
-                            for (let attackIndex = 0; attackIndex <= ATTACK_INDEX_MAX; attackIndex++)
+                            for (let statIndex = STAT_STRENGTH; statIndex <= STAT_ARCANE; statIndex++)
                             {
-                                let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR, spellBuffMultiplier, -1, (maxAttackIndex > 0));
-                                if (curDisplayEntry != null)
-                                {
-                                    hitDisplayEntries.push(curDisplayEntry);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for (const element of curSpell.hitDisplayData)
-                            {
-                                let curDisplayEntry = element;
-                                let hitEntries = [];
-
-                                for (const hit of curDisplayEntry.componentHits)
-                                {
-                                    let foundHitData = this.getMatchingHitData(curSpell.hitData, hit.attackIndex, hit.hitIndex);
-                                    if (foundHitData != null)
-                                    {
-                                        hitEntries.push(foundHitData);
-                                    }
-                                }
-
-                                let dataToAdd = this.combineHitData(hitEntries, -1, useChargedAR, spellBuffMultiplier, curDisplayEntry.fpCostOverride, (maxAttackIndex > 0));
-
-                                if (curDisplayEntry.note != null && curDisplayEntry.note != "")
-                                {
-                                    dataToAdd.hitNote = curDisplayEntry.note;
-                                }
-                                hitDisplayEntries.push(dataToAdd);
+                                spellBuffMultiplier += (spellBuffEntries[statIndex] / 100);
                             }
                         }
                     }
+                    else
+                    {
+                        spellBuffMultiplier = 0.6;
+                    }
 
-                    let toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
+                    const useChargedAR = this.configuration.useChargedAR && curSpell.allowCharge;
+                    const maxAttackIndex = curSpell.hitData.reduce((a, b) => Math.max(a, b.attackIndex), -1);
+
+                    if (curSpell.hitDisplayData.length == 0)
+                    {
+                        for (let attackIndex = 0; attackIndex <= ATTACK_INDEX_MAX; attackIndex++)
+                        {
+                            let curDisplayEntry = this.combineHitData(curSpell.hitData, attackIndex, useChargedAR, spellBuffMultiplier, -1, (maxAttackIndex > 0));
+                            if (curDisplayEntry != null)
+                            {
+                                hitDisplayEntries.push(curDisplayEntry);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (const curDisplayEntry of curSpell.hitDisplayData)
+                        {
+                            let hitEntries = [];
+
+                            for (const hit of curDisplayEntry.componentHits)
+                            {
+                                let foundHitData = this.getMatchingHitData(curSpell.hitData, hit.attackIndex, hit.hitIndex);
+                                if (foundHitData != null)
+                                {
+                                    hitEntries.push(foundHitData);
+                                }
+                            }
+
+                            const dataToAdd = this.combineHitData(hitEntries, -1, useChargedAR, spellBuffMultiplier, curDisplayEntry.fpCostOverride, (maxAttackIndex > 0));
+
+                            if (curDisplayEntry.note != null && curDisplayEntry.note != "")
+                            {
+                                dataToAdd.hitNote = curDisplayEntry.note;
+                            }
+                            hitDisplayEntries.push(dataToAdd);
+                        }
+                    }
+
+                    const toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
                     for (const curDisplayEntry of hitDisplayEntries)
                     {
 
                         let useFPCost = curDisplayEntry.fpCostOverride > 0 ? curDisplayEntry.fpCostOverride : curSpell.fpCostBase;
                         useFPCost = Math.ceil(curTool.fpCostMultiplier * useFPCost);
 
-                        let schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
-                        let netDamageFP = schoolBoostedDamage / useFPCost;
-                        let netARFP = curDisplayEntry.netAR / useFPCost;
-                        let attackIndexString = (curDisplayEntry.attackIndex != null && curDisplayEntry.attackIndex >= 0) ? ` (${curDisplayEntry.attackIndex + 1})` : "";
+                        const schoolBoostedDamage = curDisplayEntry.netDamage * schoolMultiplier;
+                        const netDamageFP = schoolBoostedDamage / useFPCost;
+                        const netARFP = curDisplayEntry.netAR / useFPCost;
+                        const attackIndexString = (curDisplayEntry.attackIndex != null && curDisplayEntry.attackIndex >= 0) ? ` (${curDisplayEntry.attackIndex + 1})` : "";
 
-                        outputRows.push({
+                        directDamageRows.push({
                             name: curSpell.name + attackIndexString,
                             type: toolTypestring,
                             damageType: curDisplayEntry.damageType,
@@ -497,50 +512,82 @@ class spellComparer
                             allowChannel: curSpell.allowChannel,
                             allowMovement: curSpell.allowMovement,
                             allowHorseback: curSpell.allowHorseback,
-                            arBreakdown: curDisplayEntry.arBreakdown
+                            arBreakdown: curDisplayEntry.arBreakdown,
+                            reqMetIntelligence: reqMetIntelligence,
+                            reqMetFaith: reqMetFaith,
+                            reqMetArcane: reqMetArcane,
+                            requirementsMet: requirementsMet
                         });
                     }
+                }
+                else
+                {
+                    // Spells that don't deal direct damage / don't have hit data
+                    const toolTypestring = curSpell.toolType == SPELL_TYPE_SORCERY ? "Sorcery" : "Incantation";
+                    otherSpellRows.push({
+                        name: curSpell.name,
+                        type: toolTypestring,
+                        fpCost: curSpell.fpCostBase,
+                        intelligence: curSpell.intelligence,
+                        faith: curSpell.faith,
+                        arcane: curSpell.arcane,
+                        allowCharge: curSpell.allowCharge,
+                        allowChain: curSpell.allowChain,
+                        allowFollowup: curSpell.allowFollowup,
+                        allowChannel: curSpell.allowChannel,
+                        allowMovement: curSpell.allowMovement,
+                        allowHorseback: curSpell.allowHorseback,
+                        reqMetIntelligence: reqMetIntelligence,
+                        reqMetFaith: reqMetFaith,
+                        reqMetArcane: reqMetArcane,
+                        requirementsMet: requirementsMet
+                    });
+
                 }
             }
         }
 
+        otherSpellRows.sort(this.sortBy("name", "asc"));
+        otherSpellRows.sort(this.sortBy("requirementsMet", "desc"));
+
         switch(this.configuration.sort)
         {
             case SORT_NAME:
-                outputRows.sort(this.sortBy({ property: "name", sortOrder: "asc"}));
+                directDamageRows.sort(this.sortBy("name", "asc"));
                 break;
             case SORT_FP_COST:
-                outputRows.sort(this.sortBy({ property: "fpCost", sortOrder: "desc"}));
+                directDamageRows.sort(this.sortBy("fpCost", "desc"));
                 break;
             case SORT_AR_NET:
-                outputRows.sort(this.sortBy({ property: "netAR", sortOrder: "desc"}));
+                directDamageRows.sort(this.sortBy("netAR", "desc"));
                 break;
             case SORT_DAMAGE_NET:
-                outputRows.sort(this.sortBy({ property: "netDamage", sortOrder: "desc"}));
+                directDamageRows.sort(this.sortBy("netDamage", "desc"));
                 break;
             case SORT_AR_FP_NET:
-                outputRows.sort(this.sortBy({ property: "netARFP", sortOrder: "desc"}));
+                directDamageRows.sort(this.sortBy("netARFP", "desc"));
                 break;
             case SORT_DMG_FP:
-                outputRows.sort(this.sortBy({ property: "netDamageFP", sortOrder: "desc"}));
+                directDamageRows.sort(this.sortBy("netDamageFP", "desc"));
                 break;
         }
 
-        for (const curRow of outputRows)
+        directDamageRows.sort(this.sortBy("requirementsMet", "desc"));
+
+        let directDamageOutput = "";
+
+        for (const curRow of directDamageRows)
         {
-            let reqMetIntelligence = (this.configuration.stats[STAT_INTELLIGENCE].value >= curRow.intelligence);
-            let reqMetFaith = (this.configuration.stats[STAT_FAITH].value >= curRow.faith);
-            let reqMetArcane = (this.configuration.stats[STAT_ARCANE].value >= curRow.arcane);
+            const disabledClass = !curRow.requirementsMet ? ` class="disabled"` : "";
+            const reqClassIntelligence = curRow.reqMetIntelligence ? "" : "requirementUnmet";
+            const reqClassFaith = curRow.reqMetFaith ? "" : "requirementUnmet";
+            const reqClassArcane = curRow.reqMetArcane ? "" : "requirementUnmet";
 
-            let reqClassIntelligence = reqMetIntelligence ? "" : "requirementUnmet";
-            let reqClassFaith = reqMetFaith ? "" : "requirementUnmet";
-            let reqClassArcane = reqMetArcane ? "" : "requirementUnmet";
+            const damageTypeString = this.getDamageTypeString(curRow.damageType);
+            const damageTypeClass = (curRow.damageType != DAMAGE_PHYSICAL) ? ` class="damageType${damageTypeString}"` : "";
 
-            let damageTypeString = this.getDamageTypeString(curRow.damageType);
-            let damageTypeClass = (curRow.damageType != DAMAGE_PHYSICAL) ? ` class="damageType${damageTypeString}"` : "";
-
-            output += `
-                <tr>
+            directDamageOutput += `
+                <tr${disabledClass}>
                     <td class="displayColName">${curRow.name}</td>
                     <td class="spellType${curRow.type}">${curRow.type}</td>
                     <td${damageTypeClass}>${damageTypeString}</td>
@@ -565,7 +612,7 @@ class spellComparer
             `;
         }
 
-        this.contentElement.innerHTML = `
+        this.directDamageListContainer.innerHTML = `
         <table id="spellList">
             <thead>
                 <tr>
@@ -592,15 +639,65 @@ class spellComparer
                 </tr>
             </thead>
             <tbody>
-                ${output}
+                ${directDamageOutput}
             </tbody>
         </table>
         `;
+
+        let otherSpellOutput = "";
+
+        for (const curRow of otherSpellRows)
+        {
+            const disabledClass = !curRow.requirementsMet ? ` class="disabled"` : "";
+
+            const reqClassIntelligence = curRow.reqMetIntelligence ? "" : "requirementUnmet";
+            const reqClassFaith = curRow.reqMetFaith ? "" : "requirementUnmet";
+            const reqClassArcane = curRow.reqMetArcane ? "" : "requirementUnmet";
+
+            otherSpellOutput += `
+                <tr${disabledClass}>
+                    <td class="displayColName">${curRow.name}</td>
+                    <td class="spellType${curRow.type}">${curRow.type}</td>
+                    <td>${curRow.fpCost}</td>
+                    <td>${this.checkFromBool(curRow.allowCharge)}</td>
+                    <td>${this.checkFromBool(curRow.allowChannel)}</td>
+                    <td>${this.checkFromBool(curRow.allowMovement)}</td>
+                    <td>${this.checkFromBool(curRow.allowHorseback)}</td>
+                    <td class="${reqClassIntelligence}">${curRow.intelligence}</td>
+                    <td class="${reqClassFaith}">${curRow.faith}</td>
+                    <td class="${reqClassArcane}">${curRow.arcane}</td>
+                </tr>
+            `;
+        }
+
+        this.otherSpellsListContainer.innerHTML = `
+        <table id="spellList">
+            <thead>
+                <tr>
+                    <th class="displayColName">Name</th>
+                    <th>Type</th>
+                    <th>FP</th>
+                    <th>Charge?</th>
+                    <th>Channel?</th>
+                    <th>Movement?</th>
+                    <th>Horseback?</th>
+                    <th>Int</th>
+                    <th>Fai</th>
+                    <th>Arc</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${otherSpellOutput}
+            </tbody>
+        </table>
+        `;
+
     }
 
     initialize()
     {
-        this.contentElement = document.getElementById("outputDiv");
+        this.directDamageListContainer = document.getElementById("outputDirectDamage");
+        this.otherSpellsListContainer = document.getElementById("outputOtherSpells");
 
         this.initializeStaffAndSealControls();
         this.initializeDefenseAndNegation();
@@ -612,6 +709,8 @@ class spellComparer
 
         this.populateStaffList();
         this.populateSealList();
+
+        this.applyLoadedValues();
         this.updateDisplay();
     }
 
@@ -632,7 +731,6 @@ class spellComparer
     initializeSpellTypeAndSorting()
     {
         this.controlSorting = document.getElementById("controlSorting");
-        this.controlSorting.value = this.configuration.sort;
         this.controlSpellType = document.getElementById("controlSpellType");
         this.controlSpellType.addEventListener("change", this.toolFilterChange.bind(this));
         this.controlSorting.addEventListener("change", this.onSortChange.bind(this));
@@ -645,7 +743,6 @@ class spellComparer
 
         for (let i = 0; i < spellSchools.length; i++)
         {
-            spellSchools[i].activeCount = 0;
             spellSchools[i].control = document.getElementById("schoolSelect" + i);
             spellSchools[i].control.addEventListener("click", this.toggleSpellSchool.bind(this));
         }
@@ -655,8 +752,6 @@ class spellComparer
     {
         this.regularSmithingStoneControl = document.getElementById("upgradeControl0");
         this.somberSmithingStoneControl = document.getElementById("upgradeControl1");
-        this.regularSmithingStoneControl.value = this.configuration.weaponLevels.regular;
-        this.somberSmithingStoneControl.value = this.configuration.weaponLevels.somber;
         this.regularSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
         this.somberSmithingStoneControl.addEventListener("change", this.upgradeControlInput.bind(this));
     }
@@ -667,8 +762,6 @@ class spellComparer
         for (const controlId of this.statControls)
         {
             const control = document.querySelector("input#" + controlId);
-            const stat = this.configuration.stats.find(it => it.name === controlId);
-            control.value = parseInt(stat.value);
             control.addEventListener("change", this.statControlInput.bind(this));
         }
     }
@@ -680,6 +773,7 @@ class spellComparer
         {
             this.defenseControls[i] = document.getElementById("statControlDefense" + i);
             this.defenseControls[i].addEventListener("change", this.defenseControlInput.bind(this));
+
         }
 
         this.negationControls = [];
@@ -687,7 +781,39 @@ class spellComparer
         {
             this.negationControls[i] = document.getElementById("statControlNegation" + i);
             this.negationControls[i].addEventListener("change", this.negationControlInput.bind(this));
+
         }
+    }
+
+    applyLoadedValues()
+    {
+        this.updateOnChange = false;
+        this.regularSmithingStoneControl.value = this.configuration.weaponLevels.regular;
+        this.somberSmithingStoneControl.value = this.configuration.weaponLevels.somber;
+
+        this.controlSorting.value = this.configuration.sort;
+        this.controlSpellType.value = this.configuration.filter;
+
+        for (const controlId of this.statControls)
+        {
+            const control = document.querySelector("input#" + controlId);
+            const stat = this.configuration.stats.find(it => it.name === controlId);
+            control.value = parseInt(stat.value);
+        }
+
+        for (let i = 0; i < this.configuration.damageTypes.length; i++)
+        {
+            this.negationControls[i].value = this.configuration.damageTypes[i].negation;
+            this.defenseControls[i].value = this.configuration.damageTypes[i].defense;
+        }
+        this.updateOnChange = true;
+    }
+
+    resetToDefaults()
+    {
+        this.configuration = PlayerConfigStorage.getDefaultConfig();
+        this.applyLoadedValues();
+        this.updateDisplay();
     }
 }
 
@@ -698,4 +824,4 @@ var toolInstance = new spellComparer();
 window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--calculatedVH', `${vh}px`);
-  });
+});

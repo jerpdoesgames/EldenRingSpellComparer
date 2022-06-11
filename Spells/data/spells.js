@@ -1,4 +1,4 @@
-var spellData = [
+const spellData = [
     {
       "defaultSortIndex": 35,
       "toolType": 1,

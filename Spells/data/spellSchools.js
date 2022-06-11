@@ -1,4 +1,4 @@
-var spellSchools = [
+const spellSchools = [
 	{
 		name: "Full Moon",
 		type: SPELL_TYPE_SORCERY,
