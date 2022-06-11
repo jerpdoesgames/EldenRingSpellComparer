@@ -699,6 +699,11 @@ class spellComparer
         this.directDamageListContainer = document.getElementById("outputDirectDamage");
         this.otherSpellsListContainer = document.getElementById("outputOtherSpells");
 
+        if (this.configuration.schoolActive == null)
+        {
+            this.configuration.schoolActive = {};
+        }
+
         this.initializeStaffAndSealControls();
         this.initializeDefenseAndNegation();
         this.initializeMainStats();
