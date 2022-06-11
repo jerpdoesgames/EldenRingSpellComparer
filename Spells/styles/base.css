@@ -167,6 +167,11 @@ h3 {
     margin: 0.75rem 0rem 1rem 0rem;
 }
 
+.annotation {
+    font-size: 1.2rem;
+    color: var(--colorAccentLight);
+}
+
 table {
     background-color: var(--colorBG);
     border-collapse: separate;
