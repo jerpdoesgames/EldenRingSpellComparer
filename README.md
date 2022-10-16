@@ -32,6 +32,7 @@ You can also see some useful information like whether the spell can be cast on h
 # Credits
 
 * The scaling information for this is based on /u/TarnishedSpreadsheet's [Weapon Calculator tool](https://www.reddit.com/r/Eldenring/comments/tbco46/elden_ring_weapon_calculator/).  I also used some data-mined information they provided.
+* This uses data-mined spell AR values curated by [Cryptid Tracker](https://www.reddit.com/user/sleepless_sheeple/comments/udlb1k/elden_ring_datamined_resource_collection).
 * Thanks to [Tical](https://twitter.com/mrtical91) for helping with testing and initial data collection.
 * Damage calculation based on [information posted by TalentedJuli](https://www.reddit.com/r/darksouls3/comments/4f8yy8/how_defense_and_absorption_really_work/).  Dark Souls 3 and Elden Ring use roughly the same system.
 * Please be sure to check the [Contributors List](https://github.com/jerpdoesgames/EldenRingSpellComparer/graphs/contributors) to see who've been submitting changes on **GitHub**.
