@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="styles/base.css" />
         <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="styles/headerStream.css"/>
         <script src="script/eldenRingEnums.js"></script>
         <script src="data/constants.js"></script>
         <script src="data/spellSchools.js"></script>
@@ -19,6 +20,7 @@
         <script src="script/eldenRingDamageCalc.js"></script>
         <script src="script/PlayerConfigStorage.js"></script>
         <script src="script/spellComparer.js"></script>
+        <script src="script/headerStream.js"></script>
 
         <meta property="og:title" content="Elden Ring Spell Comparator - by Jerp" />
         <meta property="og:description" content="Compare AR and Damage for Sorceries and Incantations." />
@@ -31,16 +33,25 @@
         <meta property="og:locale" content="en_US" />
     </head>
 
-    <body onload="toolInstance.initialize();">
+    <body onload="toolInstance.initialize(); initializeHeaderStream();">
         <h1>Elden Ring Spell Comparator</h1>
 
-        <p class="mainDescription">Compare AR and Damage for Sorceries and Incantations.</p>
+        <div id="header">
+            <div id="headerContent">
+                <p class="mainDescription">Compare AR and Damage for Sorceries and Incantations.</p>
 
-        <p class="mainDescription"><b>Updated for 1.07</b></p>
+                <p class="mainDescription"><b>Updated for 1.07</b></p>
 
-        <p class="mainDescription">
-            <a href="https://jerp.tv/eldenring">Other helpful Elden Ring Tools &amp; Info</a>
-        </p>
+                <p class="mainDescription">
+                    <a href="https://jerp.tv/eldenring">Other helpful Elden Ring Tools &amp; Info</a>
+                </p>
+                <p id="headerStreamOpen" class="mainDescription">Want to support Jerp?  <a href="#" id="headerStreamOpenButton" onclick="headerStreamOpen();">Pop open the stream</a> while you work.</p>
+            </div>
+
+            <div id="headerStream">
+
+            </div>
+        </div>
 
         <div id="contentBody">
             <div class="controlsContainer">
